@@ -15,7 +15,7 @@ Defaults: writes resume.pdf next to the input; Letter paper (US). Use
 
 Requires: pandoc, and a Chromium/Chrome binary (found via $CHROMIUM, then
 /opt/pw-browsers/chromium, then chromium/chromium-browser/google-chrome on
-PATH).
+PATH, then Google Chrome's default macOS install).
 """
 import argparse, os, re, shutil, subprocess, sys, tempfile
 from pathlib import Path
@@ -27,7 +27,8 @@ CSS = ROOT / ".claude/skills/render-resume-pdf/resume.css"
 def find_chromium():
     cands = [os.environ.get("CHROMIUM"), "/opt/pw-browsers/chromium",
              shutil.which("chromium"), shutil.which("chromium-browser"),
-             shutil.which("google-chrome")]
+             shutil.which("google-chrome"),
+             "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"]
     for c in cands:
         if c and os.path.exists(c):
             return c

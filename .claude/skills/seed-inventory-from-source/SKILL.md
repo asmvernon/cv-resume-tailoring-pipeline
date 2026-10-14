@@ -38,7 +38,11 @@ comes directly from the user rather than being inferred from a JD.
      than needing a rewrite later.) When the source's own phrasing already
      fits, lift it as-is; when it's a loose fragment or a passive/vague
      sentence, tighten it into this shape — but tightening phrasing is not
-     license to add detail the source didn't give. A bullet with no real
+     license to add detail the source didn't give. Any change beyond
+     extraction cleanup (tightening, a new opening verb) is a reword:
+     show the user the source text and your version as a before/after, and
+     write your version only once they approve it; otherwise keep the
+     source's wording (`CLAUDE.md`'s *Never reword without approval*). A bullet with no real
      outcome to report is still fine as verb + what + method; don't invent an
      outcome to complete the formula.
    - **Open each bullet with a strong, varied action verb** (Led, Designed,
@@ -76,7 +80,8 @@ comes directly from the user rather than being inferred from a JD.
    - If a bullet explicitly demonstrates the skill → `{role: <slug>, note?: ...}`.
    - If the skill only appears in a summary skills-list with no specific bullet
      backing it → `{source: "cv-skills-section:<subsection>", note: ...}` (or
-     `"cv-profile:languages"`, etc.) — name the actual section it came from. Do not
+     `"cv-profile:languages"`, or plain `"cv-skills-section"` when the CV's
+     skills list has no subsections) — name the actual section it came from. Do not
      force a link to a role bullet that doesn't really support it, and do not leave
      `evidence: []`.
    - **The reverse must also hold, always**: whenever a bullet's `skills:` list
@@ -101,7 +106,8 @@ comes directly from the user rather than being inferred from a JD.
      edited, justifying its current `evidence_strength` (see
      `inventory/schema.md`'s Evidence strength rationale section). Do not
      commit while the validator reports anything on content this run added
-     or edited.
+     or edited. If you use branches, commit on an inventory-update branch
+     (`CLAUDE.md`'s *Working conventions*).
    - This script checks structure, not prose — separately re-read every
      bullet you added or edited and confirm it actually follows the bullet
      formula (action verb + what you did + method/technology + outcome),

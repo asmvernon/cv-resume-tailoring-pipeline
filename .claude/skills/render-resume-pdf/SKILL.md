@@ -28,7 +28,9 @@ also never "fixes" content to make the page count work.
 
    This writes `resumes/<slug>/resume.pdf` and prints the page count. It
    needs `pandoc` and a Chromium/Chrome binary (`$CHROMIUM`,
-   `/opt/pw-browsers/chromium`, or `chromium`/`google-chrome` on PATH).
+   `/opt/pw-browsers/chromium`, `chromium`/`google-chrome` on PATH, or
+   Google Chrome's default install on macOS). If none is found, ask the user
+   where Chrome is and set `CHROMIUM` to that path.
 
 4. **Check the output before handing it over.**
    - Page count is within the market spec's budget (US: 1–2 pages per
@@ -55,6 +57,41 @@ also never "fixes" content to make the page count work.
    are also logged in `rationale.md`, so the user can ask for a different
    trade-off. If nothing was cut, say that the PDF matches `resume.md`
    unchanged.
+
+## The resume.md layout
+
+The tailoring skills write `resume.md` in this layout, and the renderer
+depends on it:
+
+```
+Jane Doe
+City, ST | (555) 010-0000 | jane@example.com | linkedin.com/in/janedoe
+
+## Professional Summary
+
+One short paragraph.
+
+## Experience
+
+**Employer** — City, ST
+
+**Job Title** | Mon YYYY – Mon YYYY
+- Bullet
+- Bullet
+
+## Skills
+
+**Group:** skill, skill, skill
+```
+
+- Line 1 is the name as plain text (not a `#` heading) and line 2 the
+  contact line. The renderer styles these two lines as the header.
+- Sections are `##` headings using the market spec's standard names.
+- Each role is one bold `**Title** | dates` line with its bullets directly
+  under it. An employer line above a group of roles is optional.
+- Put a blank line between any two lines that aren't list items (an
+  employer line and a title line, two skills groups). Without it, pandoc
+  joins them into one paragraph.
 
 ## Hard rules
 

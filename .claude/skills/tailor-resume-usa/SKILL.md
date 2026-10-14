@@ -59,7 +59,9 @@ and draft against it, don't reinvent it inline.
    - Which roles/bullets are included, and what's being omitted (and why).
    - **Every proposed reword as an explicit before/after pair** — this is
      the one thing that always needs per-line sign-off, not just an overall
-     thumbs-up on the draft.
+     thumbs-up on the draft. A Professional Summary counts: unless it's the
+     inventory's own summary text verbatim, show it for approval the same
+     way.
    - How the Skills section is organized.
 
 6. **Apply only what's approved.** Verbatim bullets pass through as-is;
@@ -68,8 +70,9 @@ and draft against it, don't reinvent it inline.
 
 7. **Write three files** under `resumes/YYYY-MM-DD-company-title-slug/`
    (matching the JD's slug from `job_descriptions/`):
-   - `resume.md` — the clean, ATS-formatted draft. No meta-commentary in
-     this file — it should be ready to convert straight to PDF/DOCX.
+   - `resume.md` — the clean, ATS-formatted draft, laid out as `render-resume-pdf`'s *resume.md layout* section describes, so it renders without edits. No
+     meta-commentary in this file — it should be ready to convert straight
+     to PDF/DOCX.
    - `rationale.md` — what was emphasized and why, what was omitted and why,
      the approved reword log (before/after, per bullet), and the self-check
      results below.
@@ -90,7 +93,8 @@ and draft against it, don't reinvent it inline.
 8. **Run the self-check list** from `reference/resume-principles.md` and
    report the results in `rationale.md`, including an honest list of
    required JD keywords that are genuinely *not* covered — don't force a
-   match that isn't real.
+   match that isn't real. Then commit the three files (on the application's
+   branch if you use branches; see `CLAUDE.md`'s *Working conventions*).
 
 9. **Get an independent critique.** This skill doesn't manage branches or
    PRs itself (see `CLAUDE.md`'s Working conventions) — once this output
