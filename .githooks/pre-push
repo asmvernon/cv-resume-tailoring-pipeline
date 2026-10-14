@@ -1,0 +1,15 @@
+#!/bin/sh
+# Block pushes that write directly to main. Merge via a pull request instead.
+
+protected_branch="main"
+z40=0000000000000000000000000000000000000000
+
+while read -r local_ref local_sha remote_ref remote_sha; do
+    if [ "$remote_ref" = "refs/heads/$protected_branch" ] && [ "$local_sha" != "$z40" ]; then
+        echo "Error: direct pushes to '$protected_branch' are blocked." >&2
+        echo "Push your branch and open a pull request instead." >&2
+        exit 1
+    fi
+done
+
+exit 0

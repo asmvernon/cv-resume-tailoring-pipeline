@@ -1,0 +1,20 @@
+name: ci
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  no-personal-data:
+    # Only on the upstream repo. A private copy is meant to hold its owner's
+    # inventory, job descriptions and résumés.
+    if: github.repository == 'asmvernon/cv-resume-tailoring-pipeline'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - run: scripts/check_no_personal_data.sh
