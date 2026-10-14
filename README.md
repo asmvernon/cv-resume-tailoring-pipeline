@@ -168,6 +168,12 @@ Nothing beyond your AI assistant's own plan or API usage. There's no hosting.
 - It won't fill a gap by making something up. A real gap becomes a
   development goal in `inventory/dev_opportunities_tracker.yaml`.
 
+## Contributing
+
+Fixes and new market skills are welcome. Read
+[CONTRIBUTING.md](CONTRIBUTING.md) first: in particular, open pull requests
+from a fresh fork of this repo, never from your private copy.
+
 ## Licence
 
 MIT. See [LICENSE](LICENSE).
