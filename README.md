@@ -59,12 +59,17 @@ change. Check its research: the new skill is only as good as its sources.
 ## Before you start: keep your copy private
 
 Your CV, your inventory and the jobs you apply to are personal data, and
-they'll be committed to your copy of this repo. **Don't fork this repo
-publicly, and don't push your data to a public repository.**
+they'll be committed to your copy of this repo. **Don't use GitHub's Fork
+button for your copy (a fork of a public repo is always public), and don't
+push your data to a public repository.**
 
 On GitHub, click **Use this template → Create a new repository** and choose
 **Private**. Or clone it and push it to a new private repository of your
 own. A local folder with no remote at all also works.
+
+Your assistant checks this before it writes any of your data: it runs
+`scripts/check_private_copy.sh`, stops if the copy is public, and asks you to
+confirm when it can't tell (for example, when you're offline).
 
 ## What you need
 
@@ -152,7 +157,7 @@ inventory/schema.md    the inventory data model
 inventory/             your experience and skills (yours, private)
 job_descriptions/      the jobs you've applied to (yours, private)
 resumes/               one folder per application (yours, private)
-scripts/               the inventory checker and the PDF renderer
+scripts/               the inventory checker, the PDF renderer, the private-copy check
 docs/tasks.md          open items the assistant logs for your decision
 CLAUDE.md, AGENTS.md   the rules every assistant follows here
 ```

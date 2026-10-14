@@ -20,8 +20,12 @@ Copilot, Codex, Windsurf or similar), follow the same instructions by hand:
 | Add a tailoring skill for another country or kind of role | `.claude/skills/create-tailor-skill/SKILL.md` |
 | Review a tailored draft | `.claude/agents/resume-critic.md` |
 
-3. Paths inside a skill are relative to the repo root.
-4. Where a skill refers to another skill by name (for example
+3. Before writing anything to `inventory/`, `job_descriptions/` or
+   `resumes/`, run `scripts/check_private_copy.sh` and follow `CLAUDE.md`'s
+   rule on its result: this copy must be private before personal data goes
+   in.
+4. Paths inside a skill are relative to the repo root.
+5. Where a skill refers to another skill by name (for example
    `extract-jd-signal`), it means that skill's `SKILL.md` in the table above.
-5. Where a skill says to spawn a subagent, do that review yourself, as a
+6. Where a skill says to spawn a subagent, do that review yourself, as a
    separate pass after the draft is written.
