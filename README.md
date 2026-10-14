@@ -45,8 +45,16 @@ something you wrote or confirmed.
 | `tailor-resume-uk-contract` | A CV for UK contract (day-rate) roles: engagement-based, skills summary up front, A4 |
 
 Each market's conventions live in the skill's `reference/resume-principles.md`.
-To add another country or kind of role, see
-[docs/adding-a-market.md](docs/adding-a-market.md).
+To add another country or kind of role, ask your assistant, for example:
+
+> Create a tailoring skill for German CVs
+
+This runs `create-tailor-skill`. It researches that market's conventions,
+shows you each rule with its source for your approval, then writes a new
+`tailor-*` skill from the closest existing one and wires it into the other
+skills. Everything that makes the output trustworthy (never inventing,
+approving every reword) stays the same; only the market's conventions
+change. Check its research: the new skill is only as good as its sources.
 
 ## Before you start: keep your copy private
 
@@ -130,6 +138,7 @@ own. A local folder with no remote at all also works.
 | "Add my new role" or "I also did X at Y" | `seed-inventory-from-source`: update the inventory from what you tell it |
 | "Tailor my résumé for this job" | `apply-to-job`: the whole path, job description to draft |
 | "Make the PDF" | `render-resume-pdf` |
+| "Create a tailoring skill for German CVs" | `create-tailor-skill`: add a new country or kind of role |
 
 Open questions the assistant can't settle for you, such as two sources that
 disagree about a skill, go in `docs/tasks.md`.
@@ -144,7 +153,7 @@ inventory/             your experience and skills (yours, private)
 job_descriptions/      the jobs you've applied to (yours, private)
 resumes/               one folder per application (yours, private)
 scripts/               the inventory checker and the PDF renderer
-docs/                  this guide, the guide to adding a market, your open items
+docs/tasks.md          open items the assistant logs for your decision
 CLAUDE.md, AGENTS.md   the rules every assistant follows here
 ```
 

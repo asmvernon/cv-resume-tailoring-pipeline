@@ -17,6 +17,7 @@ Copilot, Codex, Windsurf or similar), follow the same instructions by hand:
 | Tailor a US-market résumé | `.claude/skills/tailor-resume-usa/SKILL.md` |
 | Tailor a UK contract-market CV | `.claude/skills/tailor-resume-uk-contract/SKILL.md` |
 | Render a finished résumé to PDF | `.claude/skills/render-resume-pdf/SKILL.md` |
+| Add a tailoring skill for another country or kind of role | `.claude/skills/create-tailor-skill/SKILL.md` |
 | Review a tailored draft | `.claude/agents/resume-critic.md` |
 
 3. Paths inside a skill are relative to the repo root.
