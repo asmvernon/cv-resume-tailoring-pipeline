@@ -115,8 +115,12 @@ Turns one job description into inventory updates — proposed, never silently ap
 9. **Validate before committing**: run `python3 scripts/validate_inventory.py`
    and fix everything it reports on bullets/skills/dev_opportunities this
    run touched — including any pre-existing issues on *those specific
-   entries* — before running `git add`/`commit`. Do not commit while the
-   validator reports anything on content this run added or edited.
+   entries* — before running `git add`/`commit`. That includes a non-empty
+   `evidence_strength_rationale` on every bullet this run created or
+   edited, justifying its current `evidence_strength` (see
+   `inventory/schema.md`'s Evidence strength rationale section). Do not
+   commit while the validator reports anything on content this run added or
+   edited.
 
 ## Hard rules
 
