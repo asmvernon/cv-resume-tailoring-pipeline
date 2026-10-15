@@ -193,6 +193,14 @@ Nothing beyond your AI assistant's own plan or API usage. There's no hosting.
 - It won't fill a gap by making something up. A real gap becomes a
   development goal in `inventory/dev_opportunities_tracker.yaml`.
 
+## Tell me how it went
+
+Used it for a job application?
+[This 3-minute form](https://docs.google.com/forms/d/e/1FAIpQLScSes_ClztVp0wjeUEy45ps2Q6s4_CfdvtdQTQ2DupXiDc--g/viewform)
+is the best way to tell me what worked and what didn't, and your answers
+stay private unless you choose to be quoted. Fill it in again when you have
+news, such as interviews or an offer. For bugs, please open an issue.
+
 ## Contributing
 
 Fixes and new market skills are welcome. Read
