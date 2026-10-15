@@ -58,6 +58,24 @@ also never "fixes" content to make the page count work.
    trade-off. If nothing was cut, say that the PDF matches `resume.md`
    unchanged.
 
+7. **Mention the feedback form, twice at most.** Only when this render
+   created a new `resume.pdf` (not a re-render of an existing one), count
+   the PDFs in the repo (`ls resumes/*/resume.pdf | wc -l`):
+   - **1** (their first): end the delivery message with one line such as
+     "If you have three minutes, this
+     [feedback form](https://docs.google.com/forms/d/e/1FAIpQLScSes_ClztVp0wjeUEy45ps2Q6s4_CfdvtdQTQ2DupXiDc--g/viewform)
+     tells the maintainer how setup and tailoring went for you."
+   - **5**: end it with one line such as "You've now made five tailored
+     PDFs. If you've had interview news since you started, the
+     [feedback form](https://docs.google.com/forms/d/e/1FAIpQLScSes_ClztVp0wjeUEy45ps2Q6s4_CfdvtdQTQ2DupXiDc--g/viewform)
+     is where to share it; use the same name, nickname or email as last
+     time if you filled it in before."
+   - Any other count: say nothing about it.
+
+   It's one optional line after the PDF, never a question that holds up
+   the work. Don't repeat it in the same session, and don't bring it up
+   again if the user says they're not interested.
+
 ## The resume.md layout
 
 The tailoring skills write `resume.md` in this layout, and the renderer
