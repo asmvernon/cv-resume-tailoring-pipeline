@@ -74,8 +74,8 @@ source, and the user reviews the spec before anything else is written.
      "no photo"), not general advice.
    - A *Self-check before finalizing* checklist covering every rule. Keep
      the existing items that apply to every market (nothing from
-     `candidate`/unconfirmed content, every metric traces to `strong`
-     evidence, no overlapping date ranges unless marked concurrent,
+     `candidate`/unconfirmed content, every outcome metric traces to
+     `strong` evidence, no overlapping date ranges unless marked concurrent,
      report missing JD keywords honestly). The `resume-critic` agent works
      through this list item by item.
 

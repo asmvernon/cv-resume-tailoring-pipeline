@@ -22,9 +22,13 @@ comes directly from the user rather than being inferred from a JD.
 
 2. **Extract structure**:
    - Contact/profile info + professional summary + languages → `inventory/profile.yaml`.
-   - Degrees/institutions/dates/honors → `inventory/education.yaml`.
+   - Degrees/institutions/dates/honors → `inventory/education.yaml`, and
+     certifications and licences into its `certifications:` list (see
+     `inventory/schema.md`).
    - Each distinct role/position (a promotion or title change is a new role) →
-     one `inventory/roles/<slug>.yaml` file, bullets lifted from the source and
+     one `inventory/roles/<slug>.yaml` file (if the source dates a change by
+     year only, record the year rather than guessing a month; see
+     `inventory/schema.md`'s *Dates*), bullets lifted from the source and
      lightly cleaned (e.g. fixing obvious PDF-extraction spacing artifacts) without
      changing meaning.
    - Every skill named anywhere in the source (an explicit skills list, or named

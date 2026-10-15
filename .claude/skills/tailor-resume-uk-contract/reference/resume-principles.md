@@ -30,7 +30,9 @@ permanent-hire recruiter.
   UK/US CV — omit.
 - **Section order**: Contact → Professional Profile/Summary → Key Skills
   (summary) → Contract/Employment History (reverse-chronological, by
-  engagement) → Education → (optional) Certifications if directly relevant.
+  engagement) → Education → (optional) Certifications if directly relevant
+  (from `inventory/education.yaml`'s `certifications:` list; leave out
+  expired ones).
 - **A compact Key Skills summary (grouped list or simple table) near the
   top is standard and expected** in this market — unlike the stricter
   "no tables" ATS rule for a US corporate resume. Agencies scan CVs for
@@ -114,7 +116,11 @@ what they give you:
   outcome — same formula as the US resume (see `tailor-resume-usa`'s
   reference doc), so inventory content already fits both.
 - **Quantify wherever `evidence_strength: strong` supports it.** Never
-  invent a number to fill out a `moderate`/`weak` bullet.
+  invent a number to fill out a `moderate`/`weak` bullet. Scope figures the
+  user stated (team size, site size, volume) are fine from any confirmed
+  bullet; outcome metrics need `strong` (see `inventory/schema.md`'s *Scope
+  figures and outcome metrics*). A role date recorded as a year alone shows
+  as the year alone; never add a month.
 - **Consistent tense**: past tense for completed engagements; for a
   genuinely current/ongoing engagement, past tense for completed work and
   present tense for ongoing responsibilities is fine — pick one convention
@@ -210,5 +216,7 @@ error to an agency or client screener, so:
       explicitly confirmed by the user, never assumed.
 - [ ] Required JD keywords: report which are covered and which are
       genuinely missing — don't force-fit a missing one.
-- [ ] Every number/metric traces to a `strong`-evidence bullet in the
-      inventory.
+- [ ] Every outcome metric (an improvement, a result, a percentage) traces
+      to a `strong`-evidence bullet in the inventory; scope figures (team
+      size, site size, volume) trace to any confirmed bullet. See
+      `inventory/schema.md`'s *Scope figures and outcome metrics*.
