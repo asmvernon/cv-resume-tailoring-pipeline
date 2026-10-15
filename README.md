@@ -15,8 +15,8 @@ are the database, and git is the history.
 1. **Seed your inventory from your CV.** The assistant reads your CV, résumé
    or LinkedIn profile and turns it into structured YAML in `inventory/`:
    your roles, every bullet, your skills and the evidence behind each one. It
-   asks you for real specifics (numbers, outcomes) rather than making them
-   up.
+   never fills in specifics you didn't give: anything vague or missing (a
+   number, an outcome, a date) is flagged for you to fill in.
 2. **Add a job description.** It saves the posting to `job_descriptions/`,
    lists what the job asks for, and checks each requirement against your
    inventory. For every gap, it asks you whether it's a real gap or
@@ -59,12 +59,17 @@ change. Check its research: the new skill is only as good as its sources.
 ## Before you start: keep your copy private
 
 Your CV, your inventory and the jobs you apply to are personal data, and
-they'll be committed to your copy of this repo. **Don't fork this repo
-publicly, and don't push your data to a public repository.**
+they'll be committed to your copy of this repo. **Don't use GitHub's Fork
+button for your copy (a fork of a public repo is always public), and don't
+push your data to a public repository.**
 
 On GitHub, click **Use this template → Create a new repository** and choose
 **Private**. Or clone it and push it to a new private repository of your
 own. A local folder with no remote at all also works.
+
+Your assistant checks this before it writes any of your data: it runs
+`scripts/check_private_copy.sh`, stops if the copy is public, and asks you to
+confirm when it can't tell (for example, when you're offline).
 
 ## What you need
 
@@ -76,7 +81,10 @@ own. A local folder with no remote at all also works.
 - **Python 3 with PyYAML**, for the inventory checker:
   `python3 -m pip install pyyaml`.
 - **For PDFs:** [pandoc](https://pandoc.org/installing.html) and Google
-  Chrome or Chromium.
+  Chrome or Chromium. The PDF step finds Chrome's standard install on macOS
+  and `chromium` or `google-chrome` on your PATH; anywhere else, set
+  `CHROMIUM` to the browser's path, for example
+  `export CHROMIUM="/path/to/chrome"`.
 - **Optional:** git and the GitHub CLI (`gh`), if you want each tailored
   résumé reviewed by the `resume-critic` agent as comments on a pull request.
 
@@ -92,10 +100,19 @@ own. A local folder with no remote at all also works.
    > Seed my inventory from my-cv.pdf
 
    The assistant fills `inventory/profile.yaml`, `inventory/education.yaml`,
-   `inventory/roles/`, `inventory/skills.yaml` and
-   `inventory/interview_stories.yaml`, and asks you about anything vague. Go
-   through what it wrote: this is the record every résumé will be built
-   from, so it's worth getting right once.
+   `inventory/roles/` and `inventory/skills.yaml`. It keeps your CV's
+   wording, shows you a before/after for any bullet it would tighten, and
+   marks anything vague or ambiguous (a missing date, an unclear title) for
+   you to confirm. Go through what it wrote: this is the record every résumé
+   will be built from, so it's worth getting right once.
+
+   Your CV file can stay in the folder as the record of where your inventory
+   came from, or you can delete it: the skills only read `inventory/`.
+
+   `inventory/interview_stories.yaml` starts empty: a CV rarely holds the
+   stories you'd tell in an interview. Add them as they come to mind (see
+   *Day to day*), and each tailored résumé's interview prep sheet will pull
+   in the relevant ones.
 
 3. **Check the inventory:**
 
@@ -113,8 +130,9 @@ own. A local folder with no remote at all also works.
 
    This runs `apply-to-job`, which:
    - asks which market the job is in, if it isn't obvious;
-   - saves the job description and checks it against your inventory, walking
-     through each gap with you;
+   - asks whether to check the job description against your inventory first
+     (say yes for a new job), then saves it and walks through each gap with
+     you, including requirements your inventory only partly covers;
    - drafts the résumé and shows you every inclusion, omission and reword
      before writing anything;
    - writes `resumes/<date>-<company>-<title>/resume.md`, `rationale.md` and
@@ -127,8 +145,14 @@ own. A local folder with no remote at all also works.
    The PDF lands next to `resume.md`. If it runs over the page budget, the
    assistant cuts the least relevant bullets rather than shrinking the type.
 
-6. **Commit.** Your inventory, the job description and the résumé are now in
-   your private repo, ready for the next application.
+6. **Keep it.** The assistant commits as it goes: the inventory, the saved
+   job description, then the résumé and PDF. If you work on git branches,
+   `CLAUDE.md` asks for one branch per concern (the inventory update, then
+   this application), each starting from the one before; merge them into
+   `main` in that order, directly or through pull requests on your private
+   repo. If you'd rather not use branches, tell the assistant to commit to
+   `main`. Either way, your inventory is now ready for the next
+   application.
 
 ## Day to day
 
@@ -136,6 +160,7 @@ own. A local folder with no remote at all also works.
 |---|---|
 | "Add this job to my inventory" | `extract-jd-signal`: match the job against your inventory and resolve gaps, without drafting a résumé |
 | "Add my new role" or "I also did X at Y" | `seed-inventory-from-source`: update the inventory from what you tell it |
+| "Add an interview story about the outage I handled" | `seed-inventory-from-source`: record it as a STAR story (situation, task, action, result), asking you for the details |
 | "Tailor my résumé for this job" | `apply-to-job`: the whole path, job description to draft |
 | "Make the PDF" | `render-resume-pdf` |
 | "Create a tailoring skill for German CVs" | `create-tailor-skill`: add a new country or kind of role |
@@ -152,7 +177,7 @@ inventory/schema.md    the inventory data model
 inventory/             your experience and skills (yours, private)
 job_descriptions/      the jobs you've applied to (yours, private)
 resumes/               one folder per application (yours, private)
-scripts/               the inventory checker and the PDF renderer
+scripts/               the inventory checker, the PDF renderer, the private-copy check
 docs/tasks.md          open items the assistant logs for your decision
 CLAUDE.md, AGENTS.md   the rules every assistant follows here
 ```

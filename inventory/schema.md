@@ -8,8 +8,8 @@ Two kinds of files, kept separate so skills can read them independently:
 id: role-slug                    # stable slug, e.g. acme-senior-engineer-2022
 company: Acme Corp
 title: Senior Software Engineer
-start_date: "2022-01"            # YYYY-MM
-end_date: "present"              # YYYY-MM or "present"
+start_date: "2022-01"            # YYYY-MM, or YYYY if the source gives only the year (see Dates)
+end_date: "present"              # YYYY-MM, YYYY or "present"
 location: Bristol, UK
 concurrent_with: [acme-tech-lead-2023]   # optional — same-company roles this one overlaps in time
 title_history:                   # optional — title changes inside this role's date range
@@ -28,7 +28,9 @@ bullets:
     source: original                # original | inferred
     evidence_strength: strong        # strong | moderate | weak
     # strong  = has a real metric/outcome the user can back up
-    # moderate = true but qualitative, no hard number
+    # moderate = true but qualitative, no hard number. A scope figure alone
+    #            (team size, site size, volume) doesn't make a bullet strong;
+    #            see "Scope figures and outcome metrics"
     # weak    = plausible phrasing drafted from a JD, NOT YET CONFIRMED
     evidence_strength_rationale: >   # required — why THIS bullet earned that rating
       Has a real quantified outcome (30% reduction across N services) the
@@ -171,8 +173,23 @@ dev_opportunities:
 
 - `inventory/profile.yaml` — name, contact details, professional summary, languages.
   Needed verbatim by the tailoring skills' resume output; not skill/role data.
-- `inventory/education.yaml` — degrees/institutions/dates/honors. Kept separate from
-  `roles/` since it's credentials, not experience bullets.
+- `inventory/education.yaml` — degrees/institutions/dates/honors, plus an optional
+  `certifications:` list. Kept separate from `roles/` since it's credentials, not
+  experience bullets. Each certification:
+
+  ```yaml
+  certifications:
+    - id: osha-10-general-industry
+      name: OSHA 10-Hour General Industry
+      issuer: OSHA Outreach Training Program   # optional
+      date: "2019"                              # optional; YYYY-MM or YYYY
+      expires: "2027-06"                        # optional; omit if it doesn't expire
+      source_type: cv
+  ```
+
+  Only what the user's own CV or words attest. A job description asking for a
+  certification is a gap for `dev_opportunities_tracker.yaml`, never an entry
+  here.
 
 Both carry a `seeded_from` field recording provenance (e.g. which CV/date), the
 same way role/skill entries trace back to a JD.
@@ -269,6 +286,33 @@ Every role, bullet, and skill also carries `source_type: cv | jd_inferred`:
   — don't guess which is more accurate.
 - Resolve it only once the user explicitly says which is accurate — same
   standard as any other `confidence`/`evidence_strength` change.
+
+## Dates
+
+- Role, `title_history` and certification dates are `YYYY-MM`. When the
+  source gives only the year ("promoted in 2019"), write the year alone
+  (`"2019"`) rather than guessing a month, and ask the user for the month if
+  it matters. Résumés then show that date as the year alone.
+- `scripts/validate_inventory.py` treats a year-only date as anywhere in
+  that year: it flags a same-company overlap only when the dates must
+  overlap, so a promotion "in 2019" splits into two role files without a
+  false alarm.
+
+## Scope figures and outcome metrics
+
+Numbers in a bullet are one of two kinds:
+
+- **Scope figures** describe the job: team size, site size, order volume,
+  budget, number of clients. The user stated them as facts about the role,
+  so they can appear on a résumé from any confirmed bullet (`strong` or
+  `moderate`), but on their own they don't make a bullet `strong`.
+- **Outcome metrics** claim a result: an improvement, a percentage, a
+  before/after, money saved. They're what `strong` means, and they appear on
+  a résumé only from a `strong` bullet.
+
+Say which kind a bullet's numbers are in its `evidence_strength_rationale`
+when it isn't obvious (e.g. "Scope figures only (30 associates, 400,000 sq
+ft); no outcome stated").
 
 ## Concurrent roles and title changes
 

@@ -16,8 +16,11 @@ working spec.
   UK CV, considered unusual (and can raise unconscious-bias/EEOC concerns for
   the employer) on a US resume — always omit.
 - **Section order**: Contact → (optional) Professional Summary → Experience →
-  Skills → Education → (optional) Publications/Awards if directly relevant to
-  the role.
+  Skills → Education → (optional) Certifications, Publications/Awards if
+  directly relevant to the role. Certifications come from
+  `inventory/education.yaml`'s `certifications:` list; leave out expired ones.
+- **Year-only dates**: a role date recorded as a year alone (`"2019"`) shows
+  as the year alone on the résumé ("2016 – 2019"); never add a month.
 - **Standard section headers only** ("Experience", "Education", "Skills") —
   no creative headers; ATS parsers pattern-match on these.
 - **Single column. No tables, text boxes, images, icons, or graphics. No
@@ -54,7 +57,9 @@ this specific role", using language that's honestly true of the candidate.
   non-engineers to add pipeline logic across the org."
 - **Quantify wherever `evidence_strength: strong` supports it.** Never invent
   a number to fill out a `moderate`/`weak` bullet — that's fabrication, not
-  tailoring.
+  tailoring. Scope figures the user stated (team size, site size, volume)
+  are fine from any confirmed bullet; outcome metrics need `strong` (see
+  `inventory/schema.md`'s *Scope figures and outcome metrics*).
 - **Consistent tense** within each role block: past tense for past roles;
   for a current/ongoing role, past tense for completed work and present
   tense for genuinely ongoing responsibilities is fine, but pick one
@@ -139,5 +144,7 @@ error to a screener, so:
       photo/personal demographic info.
 - [ ] Required JD keywords: report which are covered and which are
       genuinely missing — don't force-fit a missing one.
-- [ ] Every number/metric traces to a `strong`-evidence bullet in the
-      inventory.
+- [ ] Every outcome metric (an improvement, a result, a percentage) traces
+      to a `strong`-evidence bullet in the inventory; scope figures (team
+      size, site size, volume) trace to any confirmed bullet. See
+      `inventory/schema.md`'s *Scope figures and outcome metrics*.

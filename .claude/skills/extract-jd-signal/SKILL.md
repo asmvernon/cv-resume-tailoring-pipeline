@@ -34,8 +34,10 @@ Turns one job description into inventory updates — proposed, never silently ap
 4. **Reconcile, skill by skill**, following `inventory/schema.md`'s Evidence rules:
    - Match on `id` (exact) or case-insensitive against `name`/`aliases`.
    - **Matched** → append a new evidence item (`{source: <this JD's path>, note: ...}`)
-     to the existing entry's `evidence` list, and set `first_seen_jd` if it isn't
-     already set. Check the item isn't already present first. **Never create a second
+     to the existing entry's `evidence` list. The note records that this JD
+     asks for the skill (a sighting of demand, not proof the user has it).
+     Leave `first_seen_jd` alone: it's only set on `jd_inferred` entries (see
+     `inventory/schema.md`). Check the item isn't already present first. **Never create a second
      entry for a skill that already exists** — extend, don't duplicate.
    - **Not matched** → propose a **new** entry with `confidence: candidate`,
      `source_type: jd_inferred`, `first_seen_jd` set to this JD's path, and a
@@ -53,12 +55,16 @@ Turns one job description into inventory updates — proposed, never silently ap
    from the JD's phrasing, not yet confirmed by the user") — see
    `inventory/schema.md`.
 
-6. **Present a summary before touching any file**, grouped as:
+6. **Present a summary before changing anything in `inventory/`** (the JD
+   saved in step 1 is the only file written before this), grouped as:
    - New skills proposed (with the JD language that triggered each)
    - Existing skills matched (just noting the new evidence link)
    - Suggested bullet additions/edits (explicitly unconfirmed)
-   - Actionable gaps: JD requirements the inventory doesn't currently
-     support at all. Split these into **new** (not yet in
+   - Actionable gaps: JD requirements the inventory doesn't support, or
+     supports only in part (e.g. the JD asks for labor planning and the
+     inventory only shows daily shift assignments). Include the partial
+     ones: they're where undocumented experience most often turns up.
+     Split these into **new** (not yet in
      `dev_opportunities_tracker.yaml`), **recurring** (already tracked,
      `status: open`, this JD is just another sighting), and **previously
      declined** (already tracked as `status: declined` — mention briefly
@@ -100,7 +106,8 @@ Turns one job description into inventory updates — proposed, never silently ap
        <today>}]`, `times_seen: 1`, `date_added`/`date_updated: <today>`.
      - Ask the user directly whether they even want this tracked as
        something to pursue — if they say no, set `status: declined` with a
-       `resolution_note` right away instead of leaving it `open`.
+       `resolution_note` right away instead of leaving it `open`. If they
+       don't say either way, track it as `open`.
 
 8. **Apply only what the user confirms.** Write directly to `inventory/skills.yaml`,
    the relevant `inventory/roles/*.yaml` file(s), and

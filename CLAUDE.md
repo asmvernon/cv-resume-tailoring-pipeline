@@ -32,6 +32,18 @@ the work; this repo's files are the source of truth they read and write.
   (see `inventory/schema.md`'s *Conflicting evidence*).
 - This repo holds personal data. Keep it private, and never publish its
   contents as part of an unrelated task.
+- **Check this copy is private before writing personal data.** The first
+  time in a session that you're about to write to `inventory/`,
+  `job_descriptions/` or `resumes/`, run `scripts/check_private_copy.sh`
+  and act on its exit code:
+  - `0` (private, or a local folder with no remote): go ahead.
+  - `1` (the public upstream repo, or a public copy): stop, show the user
+    its message, and write nothing until they've made the copy private.
+  - `2` (it can't tell, for example offline or not on GitHub): show the
+    message and ask the user to confirm this copy is private. Go ahead only
+    once they confirm.
+
+  If the script can't run at all, ask the user to confirm the same way.
 
 ## Working conventions
 

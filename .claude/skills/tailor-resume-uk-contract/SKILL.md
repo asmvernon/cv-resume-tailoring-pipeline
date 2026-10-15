@@ -77,7 +77,9 @@ US conventions.
      why).
    - **Every proposed reword as an explicit before/after pair** — this is
      the one thing that always needs per-line sign-off, not just an overall
-     thumbs-up on the draft.
+     thumbs-up on the draft. The Professional Profile counts: unless it's
+     the inventory's own summary text verbatim, show it for approval the
+     same way.
    - How the Key Skills summary is organized.
    - Which contract-logistics details (if any) are going on the CV, per
      step 3.
@@ -91,8 +93,10 @@ US conventions.
    names the pipeline and `tailor-resume-usa` use, even though the content
    is a CV rather than a US resume:
    - `resume.md` — the clean CV draft, formatted per
-     `reference/resume-principles.md`. No meta-commentary in this file — it
-     should be ready to convert straight to PDF/DOCX.
+     `reference/resume-principles.md` and laid out as `render-resume-pdf`'s
+     *resume.md layout* section describes, so it renders without edits. No
+     meta-commentary in this file — it should be ready to convert straight
+     to PDF/DOCX.
    - `rationale.md` — what was emphasized and why, what was omitted and why,
      the approved reword log (before/after, per bullet), the contract-
      logistics decisions from step 3, and the self-check results below.
@@ -113,7 +117,8 @@ US conventions.
 9. **Run the self-check list** from `reference/resume-principles.md` and
    report the results in `rationale.md`, including an honest list of
    required JD keywords that are genuinely *not* covered — don't force a
-   match that isn't real.
+   match that isn't real. Then commit the three files (on the application's
+   branch if you use branches; see `CLAUDE.md`'s *Working conventions*).
 
 10. **Get an independent critique.** This skill doesn't manage branches or
     PRs itself (see `CLAUDE.md`'s Working conventions) — once this output

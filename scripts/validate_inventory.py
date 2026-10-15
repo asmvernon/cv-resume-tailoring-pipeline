@@ -30,8 +30,14 @@ Checks:
      same company whose date ranges overlap must be linked by
      `concurrent_with` (on either side). Every `concurrent_with` id must be
      an existing role at the same company, and every `title_history` entry
-     must have a title and YYYY-MM dates that sit inside the role's own
-     range, in chronological order without overlapping.
+     must have a title and dates that sit inside the role's own range, in
+     chronological order without overlapping. A year-only date ("2019")
+     means anywhere in that year, so only overlaps that must happen are
+     flagged.
+ 12. Role and title_history dates are YYYY-MM or YYYY ("present" allowed
+     as an end date).
+ 13. education.yaml `certifications` (optional): no duplicate ids, every
+     entry has a name, and `date`/`expires` (if set) are YYYY-MM or YYYY.
 
 Exits 0 and prints "All checks passed" if clean; otherwise prints every
 issue found and exits 1. Never modifies anything.
@@ -40,7 +46,22 @@ Usage: python3 scripts/validate_inventory.py [inventory_dir]
 """
 import glob
 import os
+import re
 import sys
+
+DATE_RE = re.compile(r"^\d{4}(-(0[1-9]|1[0-2]))?$")
+
+
+def _lo(d):
+    """Earliest month a date can mean: "2019" -> "2019-01"."""
+    d = str(d)
+    return "9999-12" if d == "present" else (d + "-01" if len(d) == 4 else d)
+
+
+def _hi(d):
+    """Latest month a date can mean: "2019" -> "2019-12"."""
+    d = str(d)
+    return "9999-12" if d == "present" else (d + "-12" if len(d) == 4 else d)
 
 try:
     import yaml
@@ -229,9 +250,6 @@ def main():
             problems.append(f"dev_opportunities with empty/missing seen_in: {sorted(empty_seen_in)}")
 
     # 11. same-company overlaps declared via concurrent_with; title_history sane
-    def _end(d):
-        return "9999-12" if d == "present" else d
-
     roles = {}
     for rf in glob.glob(os.path.join(root, "roles", "*.yaml")):
         rdata = parsed.get(rf)
@@ -240,7 +258,18 @@ def main():
     bad_concurrent = []
     undeclared_overlaps = []
     bad_title_history = []
+    bad_dates = []
     for rid, r in sorted(roles.items()):
+        # 12. date formats
+        for field, allow_present in (("start_date", False), ("end_date", True)):
+            v = str(r.get(field))
+            if not (DATE_RE.match(v) or (allow_present and v == "present")):
+                bad_dates.append(f"{rid} {field}: {v!r}")
+        for i, h in enumerate(r.get("title_history") or []):
+            for field in ("start_date", "end_date"):
+                v = str(h.get(field))
+                if not (DATE_RE.match(v) or (field == "end_date" and v == "present")):
+                    bad_dates.append(f"{rid} title_history #{i + 1} {field}: {v!r}")
         cw = r.get("concurrent_with") or []
         if isinstance(cw, str):
             cw = [cw]
@@ -250,15 +279,16 @@ def main():
                 bad_concurrent.append(f"{rid} -> {other} (no such role)")
             elif o.get("company") != r.get("company"):
                 bad_concurrent.append(f"{rid} -> {other} (different company)")
-        start, end = str(r.get("start_date")), _end(str(r.get("end_date")))
+        start, end = r.get("start_date"), r.get("end_date")
         prev_end = None
         for i, h in enumerate(r.get("title_history") or []):
-            hs, he = str(h.get("start_date")), _end(str(h.get("end_date")))
+            hs, he = h.get("start_date"), h.get("end_date")
             if not (h.get("title") or "").strip():
                 bad_title_history.append(f"{rid} entry #{i + 1}: missing title")
-            if hs > he or hs < start or he > end:
+            # Flag only what must be wrong when a date is year-only.
+            if _lo(hs) > _hi(he) or _hi(hs) < _lo(start) or _lo(he) > _hi(end):
                 bad_title_history.append(f"{rid} entry #{i + 1}: {hs}..{he} outside {start}..{end}")
-            if prev_end is not None and hs <= prev_end:
+            if prev_end is not None and _hi(hs) <= _lo(prev_end):
                 bad_title_history.append(f"{rid} entry #{i + 1}: starts before the previous entry ends")
             prev_end = he
 
@@ -275,8 +305,10 @@ def main():
             ra, rb = roles[a], roles[b]
             if ra.get("company") != rb.get("company"):
                 continue
-            if str(ra.get("start_date")) <= _end(str(rb.get("end_date"))) and \
-                    str(rb.get("start_date")) <= _end(str(ra.get("end_date"))):
+            # Overlap only if it must happen, reading year-only dates as
+            # anywhere in that year.
+            if _hi(ra.get("start_date")) <= _lo(rb.get("end_date")) and \
+                    _hi(rb.get("start_date")) <= _lo(ra.get("end_date")):
                 if not _declared(a, b):
                     undeclared_overlaps.append(f"{a} and {b}")
     if bad_concurrent:
@@ -289,6 +321,30 @@ def main():
     if bad_title_history:
         lines = "\n".join(f"    {m}" for m in bad_title_history)
         problems.append(f"Invalid title_history entries:\n{lines}")
+    if bad_dates:
+        lines = "\n".join(f"    {m}" for m in bad_dates)
+        problems.append(f"Role dates not in YYYY-MM or YYYY form:\n{lines}")
+
+    # 13. education.yaml certifications
+    education_path = os.path.join(root, "education.yaml")
+    if education_path in parsed:
+        certs = (parsed[education_path] or {}).get("certifications") or []
+        cert_ids = [c.get("id") for c in certs if c.get("id") is not None]
+        cert_dupes = {i for i in cert_ids if cert_ids.count(i) > 1}
+        if cert_dupes:
+            problems.append(f"Duplicate certification ids: {sorted(cert_dupes)}")
+        bad_certs = []
+        for i, c in enumerate(certs):
+            label = c.get("id") or f"entry #{i + 1}"
+            if not (c.get("name") or "").strip():
+                bad_certs.append(f"{label}: missing name")
+            for field in ("date", "expires"):
+                v = c.get(field)
+                if v is not None and not DATE_RE.match(str(v)):
+                    bad_certs.append(f"{label} {field}: {v!r}")
+        if bad_certs:
+            lines = "\n".join(f"    {m}" for m in bad_certs)
+            problems.append(f"Invalid certifications in education.yaml:\n{lines}")
 
 
     _report(problems)
