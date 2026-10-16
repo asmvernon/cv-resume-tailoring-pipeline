@@ -36,7 +36,13 @@ template, so it doesn't share this repo's history anyway. To send a change:
    git status
    git diff --stat main
    scripts/check_no_personal_data.sh
+   python3 scripts/lint_skills.py
    ```
+
+   The last line checks every skill against the
+   [Agent Skills spec](https://agentskills.io/specification): frontmatter,
+   a description that says when to use the skill, file paths that exist,
+   and a body short enough to load on every use. CI runs it too.
 
 5. Push the branch to your fork and open a pull request here.
 

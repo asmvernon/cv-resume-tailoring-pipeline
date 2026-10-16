@@ -18,3 +18,16 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - run: scripts/check_no_personal_data.sh
+
+  skills-lint:
+    # Runs on every copy: it checks the skills, not anyone's data.
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: python3 -m pip install pyyaml
+      - run: python3 scripts/lint_skills.py
+      - run: python3 -m unittest discover -s tests
