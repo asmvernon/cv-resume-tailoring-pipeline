@@ -105,7 +105,12 @@ source, and the user reviews the spec before anything else is written.
    - `AGENTS.md` (if present): a row in the skills table.
    - `README.md`: a row in the markets table.
 
-9. **Show the user the full diff** of the new skill and the wiring, then
+9. **Run `python3 scripts/lint_skills.py`** and fix anything it reports
+   (a `name` that doesn't match the folder, a description that doesn't
+   say when to use the skill, a path that doesn't exist). Re-run it until
+   it passes.
+
+10. **Show the user the full diff** of the new skill and the wiring, then
    suggest trying it on a real job description from that market and
    tightening any rule the draft got wrong because the spec was vague.
 

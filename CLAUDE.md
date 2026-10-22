@@ -49,6 +49,8 @@ the work; this repo's files are the source of truth they read and write.
 
 - Run `python3 scripts/validate_inventory.py` after any change to
   `inventory/`; the inventory skills run it before committing.
+- Run `python3 scripts/lint_skills.py` after any change to `.claude/skills/`
+  or `.claude/agents/`; CI runs it on every pull request.
 - If you use git branches, keep one branch per concern: (a) changes to the
   skills themselves, (b) inventory updates from a CV or a job description,
   (c) one job's application work (`resumes/<slug>/`). If a task needs content
