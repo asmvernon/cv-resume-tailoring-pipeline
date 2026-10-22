@@ -58,3 +58,9 @@ the work; this repo's files are the source of truth they read and write.
   progress), branch from that branch and say so in the pull request.
 - `.githooks/` has optional hooks that block commits and pushes straight to
   `main`. Turn them on with `git config core.hooksPath .githooks`.
+- **Pipeline updates.** Once per session, when you start the user's first
+  task, run `python3 scripts/update_pipeline.py due` (it works offline). If
+  it says `due`, add one line at the end of your reply offering to check for
+  pipeline updates (the `update-pipeline` skill), and don't raise it again
+  that session. Never update without the user's yes. If the script isn't
+  there or can't run, skip this.
