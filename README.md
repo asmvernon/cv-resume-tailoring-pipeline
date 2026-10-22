@@ -78,6 +78,14 @@ confirm when it can't tell (for example, when you're offline).
   picks up `CLAUDE.md` and the skills in `.claude/skills/` automatically.
   Other assistants (Cursor, GitHub Copilot, Codex, Windsurf and others) work
   by following `AGENTS.md`, which points them at the same instructions.
+
+  > **Which model it was tested with.** The skills were written and tested
+  > in Claude Code with Anthropic's most capable Claude model at the time
+  > (October 2026). They're plain written instructions, so other models and
+  > assistants can follow them, but they haven't been tested there and may
+  > not work as well out of the box. A smaller or different model may skip
+  > a step, such as stopping to ask before a reword, so check its work more
+  > closely, and please open an issue if something doesn't work.
 - **Python 3 with PyYAML**, for the inventory checker:
   `python3 -m pip install pyyaml`.
 - **For PDFs:** [pandoc](https://pandoc.org/installing.html) and Google
