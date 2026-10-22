@@ -1,10 +1,11 @@
 # Instructions for AI coding assistants
 
 This repo is set up for Claude Code, which loads `CLAUDE.md` and the skills in
-`.claude/skills/` automatically. The skills were written and tested with
-Anthropic's most capable Claude model; they haven't been tested with other
-models, so follow every step, especially the ones that stop to ask the user. If you are another assistant (Cursor, GitHub
-Copilot, Codex, Windsurf or similar), follow the same instructions by hand:
+`.claude/skills/` automatically. If you are another assistant (Cursor, GitHub
+Copilot, Codex, Windsurf or similar), follow the same instructions by hand.
+The skills were written and tested with Anthropic's most capable Claude
+model and haven't been tested with others, so follow every step, especially
+the ones that stop to ask the user:
 
 1. Read `CLAUDE.md` first. Its ground rules apply to everything you do here.
 2. Each workflow is a `SKILL.md` file. When the user asks for one of the
