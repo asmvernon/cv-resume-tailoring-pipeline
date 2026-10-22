@@ -32,6 +32,13 @@ if ! grep -qx -- '- \[ \] (nothing yet)' docs/tasks.md ||
 docs/tasks.md (should be the empty stub)"
 fi
 
+# .pipeline-version records which version a user's copy was last updated
+# to. Committed here, every new copy would start from the wrong version.
+if git ls-files --error-unmatch .pipeline-version >/dev/null 2>&1; then
+  bad="$bad
+.pipeline-version (belongs only in a user's copy)"
+fi
+
 bad=$(printf '%s\n' "$bad" | sed '/^$/d')
 if [ -n "$bad" ]; then
   echo "Personal data must not be committed to the upstream repo:" >&2

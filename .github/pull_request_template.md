@@ -10,6 +10,9 @@
       examples.
 - [ ] Doesn't weaken the never-invent or reword-approval rules.
 - [ ] `python3 scripts/lint_skills.py` passes.
+- [ ] For a change users will notice: an entry under *Unreleased* in
+      `CHANGELOG.md`, in plain language, saying what they need to do (if
+      anything).
 - [ ] For a new market skill: made with `create-tailor-skill`, every
       convention in its `resume-principles.md` cites a source, and it's
       wired into `apply-to-job`, `render-resume-pdf`, `resume-critic`,

@@ -78,6 +78,14 @@ confirm when it can't tell (for example, when you're offline).
   picks up `CLAUDE.md` and the skills in `.claude/skills/` automatically.
   Other assistants (Cursor, GitHub Copilot, Codex, Windsurf and others) work
   by following `AGENTS.md`, which points them at the same instructions.
+
+  > **Which model it was tested with.** The skills were written and tested
+  > in Claude Code with Anthropic's most capable Claude model at the time
+  > (October 2026). They're plain written instructions, so other models and
+  > assistants can follow them, but they haven't been tested there and may
+  > not work as well out of the box. A smaller or different model may skip
+  > a step, such as stopping to ask before a reword, so check its work more
+  > closely, and please open an issue if something doesn't work.
 - **Python 3 with PyYAML**, for the inventory checker:
   `python3 -m pip install pyyaml`.
 - **For PDFs:** [pandoc](https://pandoc.org/installing.html) and Google
@@ -164,9 +172,34 @@ confirm when it can't tell (for example, when you're offline).
 | "Tailor my résumé for this job" | `apply-to-job`: the whole path, job description to draft |
 | "Make the PDF" | `render-resume-pdf` |
 | "Create a tailoring skill for German CVs" | `create-tailor-skill`: add a new country or kind of role |
+| "Check for pipeline updates" | `update-pipeline`: bring in improvements from this repo (see *Getting updates*) |
 
 Open questions the assistant can't settle for you, such as two sources that
 disagree about a skill, go in `docs/tasks.md`.
+
+## Getting updates
+
+Your copy doesn't change when this repo does. To bring improvements in,
+ask your assistant:
+
+> Check for pipeline updates
+
+This runs `update-pipeline`. It explains what's new in plain language
+(from `CHANGELOG.md`) and applies it once you say yes. It only touches the
+pipeline's own files (the skills, scripts, `inventory/schema.md`, README,
+`CLAUDE.md`); your inventory, job descriptions, résumés and
+`docs/tasks.md` are never changed. Where your copy changed a skill too
+(for example when `create-tailor-skill` wired in a new market), it merges
+the two and asks you about anything that overlaps. It notes the version
+you're on in `.pipeline-version`.
+
+You don't need to remember: about once a month, your assistant offers to
+check at the start of a session. To hear about updates as they come out,
+click **Watch → Custom → Releases** at the top of this repo's GitHub page.
+
+The usual `git merge` or `git pull` from this repo doesn't work on a copy
+made from the template, because the two share no history; `update-pipeline`
+compares the files instead.
 
 ## What's in the repo
 
@@ -177,9 +210,11 @@ inventory/schema.md    the inventory data model
 inventory/             your experience and skills (yours, private)
 job_descriptions/      the jobs you've applied to (yours, private)
 resumes/               one folder per application (yours, private)
-scripts/               the inventory checker, the PDF renderer, the private-copy check
+scripts/               the inventory checker, the PDF renderer, the private-copy
+                       check, the skills linter and the updater
 docs/tasks.md          open items the assistant logs for your decision
 CLAUDE.md, AGENTS.md   the rules every assistant follows here
+CHANGELOG.md           what changed in each update, in plain language
 ```
 
 ## What it costs

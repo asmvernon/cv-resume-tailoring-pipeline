@@ -71,6 +71,19 @@ them won't be merged:
 - Application-specific details (salary, notice period, work-permit status)
   are asked for each time and never stored.
 
+## Changelog and releases
+
+People's copies are updated by the `update-pipeline` skill, which shows them
+the new entries in `CHANGELOG.md`. So a change users will notice adds an
+entry under *Unreleased*, written for someone who isn't technical: what
+they'll notice, and what they need to do, if anything. A change to
+`inventory/schema.md` always says whether existing inventories need
+updating.
+
+The maintainer releases from time to time: the *Unreleased* entries move
+under a dated heading, and a GitHub Release with the same notes emails
+everyone watching the repo's releases.
+
 ## Review
 
 Every pull request is reviewed by the maintainer before it's merged. If it's

@@ -2,7 +2,10 @@
 
 This repo is set up for Claude Code, which loads `CLAUDE.md` and the skills in
 `.claude/skills/` automatically. If you are another assistant (Cursor, GitHub
-Copilot, Codex, Windsurf or similar), follow the same instructions by hand:
+Copilot, Codex, Windsurf or similar), follow the same instructions by hand.
+The skills were written and tested with Anthropic's most capable Claude
+model and haven't been tested with others, so follow every step, especially
+the ones that stop to ask the user:
 
 1. Read `CLAUDE.md` first. Its ground rules apply to everything you do here.
 2. Each workflow is a `SKILL.md` file. When the user asks for one of the
@@ -18,6 +21,7 @@ Copilot, Codex, Windsurf or similar), follow the same instructions by hand:
 | Tailor a UK contract-market CV | `.claude/skills/tailor-resume-uk-contract/SKILL.md` |
 | Render a finished résumé to PDF | `.claude/skills/render-resume-pdf/SKILL.md` |
 | Add a tailoring skill for another country or kind of role | `.claude/skills/create-tailor-skill/SKILL.md` |
+| Check for and apply updates from the public pipeline repo | `.claude/skills/update-pipeline/SKILL.md` |
 | Review a tailored draft | `.claude/agents/resume-critic.md` |
 
 3. Before writing anything to `inventory/`, `job_descriptions/` or
