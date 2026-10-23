@@ -216,6 +216,22 @@ dev_opportunities:
   certification is a gap for `dev_opportunities_tracker.yaml`, never an entry
   here.
 
+  It also has an optional `publications:` list, for papers and pre-prints:
+
+  ```yaml
+  publications:
+    - id: soil-sensor-network-2021
+      citation: 'Doe, J., Smith, A. (2021). A low-cost soil moisture sensor network. Journal of Example Studies, 12(3).'
+      url: "https://doi.org/10.0000/example.2021.001"
+      related_role: acme-research-assistant-2020   # optional; omit for a standalone publication
+      notes: >                             # optional
+        Context, e.g. why it isn't tied to a role.
+  ```
+
+  Citations keep the author names exactly as published, even if the user's
+  name has changed since. A role bullet may also cite a publication when the
+  work belongs to that role.
+
 Both carry a `seeded_from` field recording provenance (e.g. which CV/date), the
 same way role/skill entries trace back to a JD.
 
