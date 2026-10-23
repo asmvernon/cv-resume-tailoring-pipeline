@@ -43,6 +43,31 @@ notes: >                             # optional — role-level caveats/TODOs
   external use, unresolved date/title ambiguity, provenance of a bulk edit.
 ```
 
+### Personal projects (optional)
+
+A project that isn't employment, such as a side project, an open-source
+tool or a portfolio piece, is optional. It goes in its own file under
+`roles/`, with the same shape as a role plus these optional keys:
+
+```yaml
+id: budget-tracker-project
+kind: personal_project           # marks it as a project, not a job
+company: "Personal project"
+title: "Budget Tracker"
+url: "example.com/budget"        # the public link
+repo_url: "github.com/you/budget-tracker"   # optional — a more specific key when there are several links
+stack: [Python, Flask, PostgreSQL]          # the technologies used
+tagline: >                       # optional — the line shown under the heading
+  A household budgeting web app, designed, built and run solo.
+```
+
+A link that isn't live yet is `"TODO"`, and tailoring leaves it out rather
+than inventing one. Tailoring puts projects in a "Projects" section after
+Experience, never inside it. When a project file holds several alternative
+bullets, each one's `usage_note` says which job descriptions it suits and
+which bullets it replaces, so tailoring picks one consistent set instead of
+stacking overlapping variants.
+
 ## `inventory/skills.yaml` — flat taxonomy, single file
 
 ```yaml
@@ -190,6 +215,22 @@ dev_opportunities:
   Only what the user's own CV or words attest. A job description asking for a
   certification is a gap for `dev_opportunities_tracker.yaml`, never an entry
   here.
+
+  It also has an optional `publications:` list, for papers and pre-prints:
+
+  ```yaml
+  publications:
+    - id: soil-sensor-network-2021
+      citation: 'Doe, J., Smith, A. (2021). A low-cost soil moisture sensor network. Journal of Example Studies, 12(3).'
+      url: "https://doi.org/10.0000/example.2021.001"
+      related_role: acme-research-assistant-2020   # optional; omit for a standalone publication
+      notes: >                             # optional
+        Context, e.g. why it isn't tied to a role.
+  ```
+
+  Citations keep the author names exactly as published, even if the user's
+  name has changed since. A role bullet may also cite a publication when the
+  work belongs to that role.
 
 Both carry a `seeded_from` field recording provenance (e.g. which CV/date), the
 same way role/skill entries trace back to a JD.
