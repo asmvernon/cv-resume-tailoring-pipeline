@@ -43,6 +43,31 @@ notes: >                             # optional — role-level caveats/TODOs
   external use, unresolved date/title ambiguity, provenance of a bulk edit.
 ```
 
+### Personal projects (optional)
+
+A project that isn't employment, such as a side project, an open-source
+tool or a portfolio piece, is optional. It goes in its own file under
+`roles/`, with the same shape as a role plus these optional keys:
+
+```yaml
+id: budget-tracker-project
+kind: personal_project           # marks it as a project, not a job
+company: "Personal project"
+title: "Budget Tracker"
+url: "example.com/budget"        # the public link
+repo_url: "github.com/you/budget-tracker"   # optional — a more specific key when there are several links
+stack: [Python, Flask, PostgreSQL]          # the technologies used
+tagline: >                       # optional — the line shown under the heading
+  A household budgeting web app, designed, built and run solo.
+```
+
+A link that isn't live yet is `"TODO"`, and tailoring leaves it out rather
+than inventing one. Tailoring puts projects in a "Projects" section after
+Experience, never inside it. When a project file holds several alternative
+bullets, each one's `usage_note` says which job descriptions it suits and
+which bullets it replaces, so tailoring picks one consistent set instead of
+stacking overlapping variants.
+
 ## `inventory/skills.yaml` — flat taxonomy, single file
 
 ```yaml
