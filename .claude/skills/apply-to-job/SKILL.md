@@ -1,6 +1,6 @@
 ---
 name: apply-to-job
-description: Orchestrates the manual, one-JD-at-a-time path from "I found a job, tailor me a resume/CV for it" through to a finished draft — sequencing extract-jd-signal, gap resolution, and tailor-resume-usa/tailor-resume-uk-contract, and enforcing the checkpoints (the extract-jd-signal gate, source-quality routing for gap resolution, conflict flagging, branch hygiene) that are easy to skip when those skills are run separately. Use whenever the user wants to go from a job description to a tailored resume/CV end to end, not just for one step of that path. Doesn't replace the underlying skills, and doesn't discover postings — this is the human-in-the-loop path for one posting the user already has in hand.
+description: Orchestrates the manual, one-JD-at-a-time path from "I found a job, tailor me a resume/CV for it" through to a finished draft — sequencing extract-jd-signal, gap resolution, and tailor-resume-usa/tailor-resume-uk-contract/tailor-cv-uk-permanent, and enforcing the checkpoints (the extract-jd-signal gate, source-quality routing for gap resolution, conflict flagging, branch hygiene) that are easy to skip when those skills are run separately. Use whenever the user wants to go from a job description to a tailored resume/CV end to end, not just for one step of that path. Doesn't replace the underlying skills, and doesn't discover postings — this is the human-in-the-loop path for one posting the user already has in hand.
 ---
 
 # Apply to a job
@@ -87,8 +87,8 @@ rather than duplicating the work.
 
 Once extract-jd-signal's findings are all resolved (no open questions
 blocking a draft — declined gaps and flagged conflicts are fine, a genuinely
-unanswered question isn't), run `tailor-resume-usa` or
-`tailor-resume-uk-contract` per the track chosen in step 2, on its own
+unanswered question isn't), run `tailor-resume-usa`,
+`tailor-resume-uk-contract` or `tailor-cv-uk-permanent` per the track chosen in step 2, on its own
 branch/worktree (the "JD application work" category from `CLAUDE.md`).
 
 ### 7. Summarize

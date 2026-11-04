@@ -39,15 +39,22 @@ safer default was picked.
   with a lot of relevant experience, never to avoid cutting. Summarise
   detail older than about ten years in a line or two, or omit it.
   *(Prospects CV; Michael Page; Cambridge, Dundee, Napier)*
-- **A4 paper**, one plain font (Arial, Calibri or similar) at **11pt or
-  above**, margins around 2.5 cm. *(NCS: size 11 or bigger; Prospects CV:
-  10–12pt, 2.5 cm margins. The stricter 11pt minimum is used.)*
+- **A4 paper**, one plain font (Arial, Calibri or similar) with body text
+  at **10pt or above**, rendered with `--paper a4 --font-size 10`.
+  *(Prospects CV: 10–12pt. NCS asks for 11pt or bigger; the 10pt floor
+  follows Prospects so an experienced candidate fits 2 pages.)*
+- **Margins**: the renderer's stylesheet (about 1.3–1.5 cm). Prospects
+  suggests 2.5 cm; that isn't adopted, because it costs most of a page,
+  and the stylesheet still leaves clear white space. **(deviation from the
+  source, noted)**
 - **No "Curriculum Vitae" or "CV" heading.** The name is the title.
   *(Prospects CV)*
-- **File name**: `Firstname-Lastname-CV-Company-Role-Title.pdf` (for
-  example `Jane-Smith-CV-Acme-Lead-Data-Scientist.pdf`). *(Prospects CV
-  for the name-and-CV pattern; company and role added by the user's
-  choice.)*
+- **Submission file name**: `Firstname-Lastname-CV-Company-Role-Title.pdf`
+  (for example `Jane-Smith-CV-Acme-Lead-Data-Scientist.pdf`), and the same
+  name with `.docx` for a Word copy. The repo keeps `resume.pdf`;
+  `render-resume-pdf` gives the user the named copy. *(Prospects CV for
+  "Firstname-Lastname-CV"; the company and role suffix is a pipeline
+  preference, **unverified**.)*
 - **Section order**: Contact → Personal profile → Experience → Skills →
   Education → (optional) Certifications, Selected publications.
   Certifications come from `inventory/education.yaml`'s
@@ -57,7 +64,8 @@ safer default was picked.
   icons, and no contact details in page headers or footers. *(Prospects
   CV: an ATS can't read images or logos, "Use text only".)*
 - **Year-only dates**: a role date recorded as a year alone (`"2019"`)
-  shows as the year alone ("2016 – 2019"); never add a month.
+  shows as the year alone ("2016 – 2019"); never add a month. *(pipeline
+  rule)*
 - **No first-person pronouns** ("I", "my", "me"). Start bullets and
   profile sentences with an **active verb** (Led, Designed, Built,
   Delivered, Mentored), never a passive or weak opener ("Responsible
@@ -115,7 +123,7 @@ safer default was picked.
   outcome metrics need `strong` (see `inventory/schema.md`'s *Scope
   figures and outcome metrics*).
 - **Consistent tense** within each role block: past tense for past roles;
-  for a current role, pick one convention and hold it.
+  for a current role, pick one convention and hold it. *(pipeline rule)*
 - **Gaps**: if the inventory shows a gap the user has explained, give the
   reason briefly with dates, in the right section. Never invent a reason.
   *(Prospects CV; Michael Page: "explaining any gaps")*
@@ -193,38 +201,76 @@ error to a screener, so:
 - Photo, age, date of birth, marital status, nationality (see *Contact
   block*).
 - Notice period and salary expectation: never on the CV. They go on the
-  application form or in the cover letter.
-- Tailoring is as much subtraction as rewording: cut roles and bullets
+  application form or in the cover letter. **(unverified: none of the
+  sources lists them as CV content, but none says so outright.)**
+- *(pipeline rule)* Tailoring is as much subtraction as rewording: cut roles and bullets
   that don't serve this JD. Never omit something *because it's
   unflattering* if it's still the most relevant experience.
 
 ## Self-check before finalizing
 
+Every rule above has an item here; the `resume-critic` agent works through
+them one by one.
+
+**Content and evidence**
 - [ ] Every bullet is verbatim from the inventory or an explicitly-approved
       reword: nothing from `candidate`/`weak`/unconfirmed content.
-- [ ] 2 A4 pages or fewer, or 3 with a stated reason (high-level role, a
-      lot of relevant experience).
-- [ ] No "CV"/"Curriculum Vitae" heading; the name is the title.
-- [ ] A personal profile of at most 150 words, one paragraph, no heading.
-- [ ] British English spelling throughout; called a CV, never a résumé.
-- [ ] Every bullet and profile sentence starts with an active verb; no
-      first-person pronouns; no "Responsible for"/"Was involved in".
-- [ ] Contact block has town/city only: no full address, photo, age, date
-      of birth, marital status or nationality.
-- [ ] A right-to-work line appears only if the user said they need one.
-- [ ] No references line, no notice period, no salary.
-- [ ] Interests appear only if directly relevant.
-- [ ] Tense is consistent within each role block.
-- [ ] No two date ranges on the page overlap unless one is explicitly
-      marked concurrent, and every date traces to the role file's dates or
-      its `title_history`.
-- [ ] Text only, one column, standard headings: no tables, images or
-      icons.
-- [ ] Required JD and person-specification keywords: report which are
-      covered and which are genuinely missing; don't force-fit a missing
-      one.
+- [ ] Skills section uses only `confidence: confirmed` skills, grouped and
+      ordered for this JD.
 - [ ] Every outcome metric traces to a `strong`-evidence bullet; scope
       figures trace to any confirmed bullet. See `inventory/schema.md`'s
       *Scope figures and outcome metrics*.
-- [ ] The submitted file is named `Firstname-Lastname-CV-Company-Role-Title`
-      in the format the advert asks for.
+- [ ] Required JD and person-specification keywords appear inside real
+      bullets, not as a keyword dump. Report which are covered and which
+      are genuinely missing; don't force-fit a missing one.
+- [ ] No gap reason is invented; any gap explanation comes from the
+      inventory.
+
+**Format**
+- [ ] 2 A4 pages or fewer, or 3 with a stated reason (a high-level role,
+      a lot of relevant experience).
+- [ ] Rendered on A4 with body text at 10pt or above (`--paper a4
+      --font-size 10`), with the stylesheet's margins.
+- [ ] Reverse-chronological; section order is Contact → Personal profile
+      → Experience → Skills → Education → optional Certifications and
+      Selected publications.
+- [ ] No "CV"/"Curriculum Vitae" heading; the name is the title.
+- [ ] Text only, one column, standard headings: no tables, images or
+      icons.
+- [ ] Dates are "Mon YYYY – Mon YYYY", or year-only where the inventory
+      records only a year.
+- [ ] No two date ranges on the page overlap unless one is explicitly
+      marked concurrent, and every date traces to the role file's dates or
+      its `title_history`.
+- [ ] 3–6 bullets for recent, relevant roles; 1–3 or none for older or
+      tangential ones; detail older than about ten years summarised or
+      omitted.
+
+**Language**
+- [ ] British English spelling throughout; called a CV, never a résumé.
+- [ ] Every bullet and profile sentence starts with an active verb; no
+      first-person pronouns; no "Responsible for"/"Was involved in".
+- [ ] Tense is consistent within each role block.
+
+**Profile and contact**
+- [ ] A personal profile of at most 150 words, one paragraph, no heading,
+      tailored to this JD and free of clichés.
+- [ ] Contact block has town/city only: no full address, photo, age, date
+      of birth, marital status or nationality.
+- [ ] A right-to-work line appears only if the user isn't a UK or Irish
+      citizen, or the advert asks, and then without stating nationality.
+
+**Sections and omissions**
+- [ ] No references line, no notice period, no salary.
+- [ ] Interests appear only if directly relevant.
+- [ ] Education: qualification, institution and dates, newest first; no
+      school grades for an experienced candidate.
+- [ ] Selected publications only for an R&D or science role; otherwise
+      none.
+- [ ] Certifications come from `inventory/education.yaml`'s
+      `certifications:` list, with expired ones left out.
+
+**Delivery**
+- [ ] The delivery message gives the submission file name
+      (`Firstname-Lastname-CV-Company-Role-Title`), and a .docx copy is
+      provided if the advert asks for one.

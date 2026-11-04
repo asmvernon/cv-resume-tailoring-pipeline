@@ -1,11 +1,12 @@
 ---
 name: render-resume-pdf
-description: Render a finished tailored resume/CV (resumes/<slug>/resume.md) to a text-based, ATS-safe PDF for submission. Use whenever the user asks for the PDF of a resume or CV produced by tailor-resume-usa or tailor-resume-uk-contract.
+description: Render a finished tailored resume/CV (resumes/<slug>/resume.md) to a text-based, ATS-safe PDF for submission. Use whenever the user asks for the PDF of a resume or CV produced by tailor-resume-usa, tailor-resume-uk-contract or tailor-cv-uk-permanent.
 ---
 
 # Render resume PDF
 
-The last step after `tailor-resume-usa` / `tailor-resume-uk-contract`: turns
+The last step after `tailor-resume-usa` / `tailor-resume-uk-contract` /
+`tailor-cv-uk-permanent`: turns
 an approved `resume.md` into the PDF the user actually submits. Presentation
 only. It never changes wording, so no reword approval is involved, but it
 also never "fixes" content to make the page count work.
@@ -18,7 +19,9 @@ also never "fixes" content to make the page count work.
    user's approval.
 
 2. **Pick the paper size from the track.** US resume → `--paper letter` (the
-   default). UK contract CV or UK permanent CV → `--paper a4`.
+   default). UK contract CV → `--paper a4`. UK permanent CV → `--paper a4
+   --font-size 10 --title CV` (its spec sets a 10pt minimum and calls the
+   document a CV).
 
 3. **Render:**
 
@@ -49,7 +52,13 @@ also never "fixes" content to make the page count work.
 
 5. **Commit and deliver.** Commit `resume.pdf` next to `resume.md` on the
    same branch (it's part of that JD's application work per `CLAUDE.md`),
-   and give the user the file directly.
+   and give the user the file directly. If the market spec sets a
+   submission file name (`tailor-cv-uk-permanent` does), keep `resume.pdf`
+   in the repo and give the user a copy under that name, made with `-o`
+   (outside `resumes/<slug>/`, or not committed). If the user needs a Word
+   file, convert the same `resume.md` with
+   `pandoc resumes/<slug>/resume.md -o <name>.docx` and give them that too:
+   it carries the same wording, without the PDF's styling.
 
 6. **Report length cuts to the user.** If any bullets were removed to fit
    the page budget, say so in the same message that delivers the PDF. List
@@ -104,7 +113,11 @@ One short paragraph.
 
 - Line 1 is the name as plain text (not a `#` heading) and line 2 the
   contact line. The renderer styles these two lines as the header.
-- Sections are `##` headings using the market spec's standard names.
+- Sections are `##` headings using the market spec's standard names. A
+  market whose spec puts the summary straight under the contact line with
+  no heading (`tailor-cv-uk-permanent`'s personal profile) writes it as a
+  plain paragraph there instead of the `## Professional Summary` section;
+  the renderer handles both.
 - Each role is one bold `**Title** | dates` line with its bullets directly
   under it. An employer line above a group of roles is optional.
 - Put a blank line between any two lines that aren't list items (an

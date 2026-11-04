@@ -79,7 +79,7 @@ and draft against it, don't reinvent it inline.
 
 8. **Write three files** under `resumes/YYYY-MM-DD-company-title-slug/`
    (matching the JD's slug from `job_descriptions/`):
-   - `resume.md` — the clean, ATS-formatted CV, laid out as `render-resume-pdf`'s *resume.md layout* section describes, so it renders without edits. No
+   - `resume.md` — the clean, ATS-formatted CV, laid out as `render-resume-pdf`'s *resume.md layout* section describes, so it renders without edits, except that the personal profile is a plain paragraph straight after the contact line, with no heading (see the spec's *Personal profile*). No
      meta-commentary in this file — it should be ready to convert straight
      to PDF/DOCX.
    - `rationale.md` — what was emphasized and why, what was omitted and why,
@@ -104,7 +104,9 @@ and draft against it, don't reinvent it inline.
    required JD keywords that are genuinely *not* covered — don't force a
    match that isn't real. Recommend a cover letter in your summary to the
    user unless the employer says not to (see the spec's *Market-specific
-   sections*). Then commit the three files (on the application's
+   sections*). Tell the user the submission file name from the spec's
+   *Format & structure*, and if the advert asks for .docx, that
+   `render-resume-pdf` makes one alongside the PDF. Then commit the three files (on the application's
    branch if you use branches; see `CLAUDE.md`'s *Working conventions*).
 
 10. **Get an independent critique.** This skill doesn't manage branches or
@@ -132,5 +134,7 @@ and draft against it, don't reinvent it inline.
   `evidence_strength` supports.
 - Never invent or assume right-to-work status, notice period or salary,
   and never put notice period or salary on the CV.
+- Never store right-to-work status, notice period or salary in the
+  inventory: they're application details, asked for each time.
 - Converting the final `resume.md` to PDF/DOCX (for actual submission) is a
   separate, later step — this skill's job ends at a clean Markdown draft.
