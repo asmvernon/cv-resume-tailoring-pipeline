@@ -19,6 +19,7 @@ the ones that stop to ask the user:
 | Go from a job description to a tailored résumé, end to end | `.claude/skills/apply-to-job/SKILL.md` |
 | Tailor a US-market résumé | `.claude/skills/tailor-resume-usa/SKILL.md` |
 | Tailor a UK contract-market CV | `.claude/skills/tailor-resume-uk-contract/SKILL.md` |
+| Tailor a CV for a permanent UK role | `.claude/skills/tailor-cv-uk-permanent/SKILL.md` |
 | Render a finished résumé to PDF | `.claude/skills/render-resume-pdf/SKILL.md` |
 | Add a tailoring skill for another country or kind of role | `.claude/skills/create-tailor-skill/SKILL.md` |
 | Check for and apply updates from the public pipeline repo | `.claude/skills/update-pipeline/SKILL.md` |

@@ -8,10 +8,12 @@ parseable), single column, using .claude/skills/render-resume-pdf/resume.css.
 
 Usage:
   python3 scripts/render_resume_pdf.py resumes/<slug>/resume.md [-o out.pdf]
-      [--paper letter|a4]
+      [--paper letter|a4] [--font-size PT] [--title TITLE]
 
-Defaults: writes resume.pdf next to the input; Letter paper (US). Use
---paper a4 for UK CVs. Prints the page count; exits 1 on failure.
+Defaults: writes resume.pdf next to the input; Letter paper (US); the
+stylesheet's body font size; PDF title "Resume". Use --paper a4 for UK CVs,
+and --font-size / --title where a market's spec sets a minimum body size or
+calls the document a CV. Prints the page count; exits 1 on failure.
 
 Requires: pandoc, and a Chromium/Chrome binary (found via $CHROMIUM, then
 /opt/pw-browsers/chromium, then chromium/chromium-browser/google-chrome on
@@ -68,6 +70,10 @@ def main():
     ap.add_argument("resume_md")
     ap.add_argument("-o", "--output")
     ap.add_argument("--paper", choices=["letter", "a4"], default="letter")
+    ap.add_argument("--font-size", type=float,
+                    help="body font size in pt (default: the stylesheet's)")
+    ap.add_argument("--title", default="Resume",
+                    help='PDF metadata title (default: "Resume")')
     a = ap.parse_args()
     src = Path(a.resume_md)
     out = Path(a.output) if a.output else src.with_suffix(".pdf")
@@ -76,12 +82,16 @@ def main():
     css = CSS.read_text()
     if a.paper == "a4":
         css = css.replace("size: Letter", "size: A4")
+    if a.font_size:
+        css, n = re.subn(r"(body \{[^}]*font-size: )[\d.]+pt", rf"\g<1>{a.font_size:g}pt", css)
+        if n != 1:
+            sys.exit("Couldn't find the body font size in resume.css.")
     with tempfile.TemporaryDirectory() as td:
         td = Path(td)
         (td / "in.md").write_text(preprocess(src.read_text()))
         (td / "resume.css").write_text(css)
         subprocess.run(["pandoc", str(td / "in.md"), "-f", "markdown-smart",
-                        "-t", "html5", "-s", "--metadata", "pagetitle=Resume",
+                        "-t", "html5", "-s", "--metadata", f"pagetitle={a.title}",
                         "--css", str(td / "resume.css"), "--embed-resources",
                         "-o", str(td / "resume.html")], check=True)
         subprocess.run([find_chromium(), "--headless", "--no-sandbox",

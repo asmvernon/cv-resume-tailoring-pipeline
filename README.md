@@ -43,6 +43,7 @@ something you wrote or confirmed.
 |---|---|
 | `tailor-resume-usa` | A US-market résumé: 1–2 pages, Letter paper, applicant-tracking-system friendly |
 | `tailor-resume-uk-contract` | A CV for UK contract (day-rate) roles: engagement-based, skills summary up front, A4 |
+| `tailor-cv-uk-permanent` | A CV for permanent UK roles: 2 A4 pages, short personal profile, British spelling, no photo or date of birth |
 
 Each market's conventions live in the skill's `reference/resume-principles.md`.
 To add another country or kind of role, ask your assistant, for example:

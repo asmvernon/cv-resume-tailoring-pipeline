@@ -1,6 +1,6 @@
 ---
 name: tailor-resume-uk-contract
-description: Draft a tailored UK contract-market CV for a specific job description, built entirely from the confirmed inventory in inventory/ (never inventing content), plus a stub interview_prep.md pulling relevant STAR-format interview_stories. Rewords bullets to mirror the JD's language where it genuinely helps, but every reword is shown as an explicit before/after and requires the user's approval before it's written to disk. Use whenever the user wants a CV tailored to a UK contract/day-rate role, or asks to apply UK contracting CV conventions to their inventory content. For US-market resumes, use `tailor-resume-usa` instead.
+description: Draft a tailored UK contract-market CV for a specific job description, built entirely from the confirmed inventory in inventory/ (never inventing content), plus a stub interview_prep.md pulling relevant STAR-format interview_stories. Rewords bullets to mirror the JD's language where it genuinely helps, but every reword is shown as an explicit before/after and requires the user's approval before it's written to disk. Use whenever the user wants a CV tailored to a UK contract/day-rate role, or asks to apply UK contracting CV conventions to their inventory content. For US-market resumes, use `tailor-resume-usa` instead, and for permanent (salaried) UK roles `tailor-cv-uk-permanent`.
 ---
 
 # Tailor resume (UK contract market)

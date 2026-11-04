@@ -1,0 +1,140 @@
+---
+name: tailor-cv-uk-permanent
+description: Draft a tailored CV for a permanent (salaried) UK role from a specific job description, built entirely from the confirmed inventory in inventory/ (never inventing content), following UK permanent-role conventions (2 A4 pages, a short personal profile, British spelling, no photo or date of birth), plus a stub interview_prep.md pulling relevant STAR-format interview_stories. Every reworded bullet is shown as a before/after and needs the user's approval. Use whenever the user wants a CV for a permanent or full-time job in the UK. For UK day-rate contract roles use `tailor-resume-uk-contract`, and for US roles use `tailor-resume-usa`.
+---
+
+# Tailor CV (UK permanent roles)
+
+Turns the confirmed inventory + one target JD into a tailored CV draft for
+a permanent, salaried UK role. Selection and reframing only — nothing here invents
+experience, and nothing gets reworded without the user seeing the
+before/after first.
+
+For a UK day-rate contract role, use `tailor-resume-uk-contract`; for a
+US role, use `tailor-resume-usa`. Each follows its own
+`reference/resume-principles.md`, though the same never-invent and
+reword-approval rules apply.
+
+CV craft (format, ATS rules, bullet formula, keyword rules, self-check
+list) lives in `reference/resume-principles.md` — read it before drafting,
+and draft against it, don't reinvent it inline.
+
+## Inputs
+
+- The target JD: a path to an already-saved `job_descriptions/*.md` file, or
+  fresh JD text/file/link to work from directly.
+- The full inventory: `inventory/profile.yaml`, `inventory/education.yaml`,
+  `inventory/skills.yaml`, `inventory/interview_stories.yaml`, and every
+  file in `inventory/roles/`.
+- Application details the inventory doesn't hold: whether the user needs a
+  right-to-work line (only if they aren't a UK or Irish citizen, or the
+  advert asks), and the file format the advert asks for (PDF or .docx).
+  These are application-specific, not experience, so they're never
+  inferred or invented. Ask the user each time. Notice period and salary
+  never go on the CV.
+
+## Steps
+
+1. **Check whether this JD has already been run through `extract-jd-signal`.**
+   If not, ask the user whether to run that first (so any real gaps get
+   reconciled into the inventory before drafting) or proceed directly with
+   what's currently there. Either is fine — just don't assume.
+
+2. **Read the full inventory** and scan for unresolved ambiguity — a
+   `notes:`/`TODO` field on a role, an unusual date overlap, anything
+   load-bearing for this JD. Flag it to the user before drafting rather than
+   silently picking a resolution. A same-company overlap already declared
+   with `concurrent_with`/`title_history` isn't ambiguous: present it per
+   `reference/resume-principles.md`'s "Concurrent roles and title changes"
+   rule instead of asking again.
+
+3. **Ask for the application details** listed under Inputs above if the
+   user hasn't already given them.
+
+4. **Select relevant content**, per `reference/resume-principles.md`:
+   - Which roles make the cut, and how many bullets each gets (recent/
+     relevant roles get more; older/tangential ones get fewer or none).
+   - Only `confidence: confirmed` skills and `source: original` bullets —
+     never `candidate`/unconfirmed content, regardless of how well it would
+     fit the JD.
+   - How the Skills section should be grouped/ordered for this JD.
+
+5. **Draft bullets.** Default to the inventory's text verbatim. Where
+   mirroring the JD's exact phrasing would genuinely help (a real keyword
+   match, not padding), propose a reworded version — never increasing the
+   implied strength beyond the bullet's `evidence_strength`.
+
+6. **Present the full plan before writing anything**:
+   - Which roles/bullets are included, and what's being omitted (and why).
+   - **Every proposed reword as an explicit before/after pair** — this is
+     the one thing that always needs per-line sign-off, not just an overall
+     thumbs-up on the draft. A personal profile counts: unless it's the
+     inventory's own summary text verbatim, show it for approval the same
+     way.
+   - How the Skills section is organized.
+
+7. **Apply only what's approved.** Verbatim bullets pass through as-is;
+   reworded ones only go in if approved (use the original text otherwise, or
+   drop the bullet if the user says so).
+
+8. **Write three files** under `resumes/YYYY-MM-DD-company-title-slug/`
+   (matching the JD's slug from `job_descriptions/`):
+   - `resume.md` — the clean, ATS-formatted CV, laid out as `render-resume-pdf`'s *resume.md layout* section describes, so it renders without edits, except that the personal profile is a plain paragraph straight after the contact line, with no heading (see the spec's *Personal profile*). No
+     meta-commentary in this file — it should be ready to convert straight
+     to PDF/DOCX.
+   - `rationale.md` — what was emphasized and why, what was omitted and why,
+     the approved reword log (before/after, per bullet), and the self-check
+     results below.
+   - `interview_prep.md` — **v1/stub, to be expanded later.** Pull every
+     `inventory/interview_stories.yaml` entry whose `skills` or
+     `competencies` plausibly relate to this JD (recruiting/hiring,
+     incident response, regulated-industry judgment calls, etc. — match on
+     substance, not just exact keyword overlap), and list each in full STAR
+     format with a one-line note on why it's relevant to this JD. This is
+     presentation only — don't edit the underlying story content here, and
+     don't invent Action/Result detail to fill a story that's still a TODO
+     placeholder in the inventory. If a listed story has incomplete
+     Action/Result, say so plainly at the top of its entry rather than
+     silently including a half-true STAR breakdown. If no stories are
+     relevant to this JD, write the file anyway with a short note saying so
+     — don't skip it.
+
+9. **Run the self-check list** from `reference/resume-principles.md` and
+   report the results in `rationale.md`, including an honest list of
+   required JD keywords that are genuinely *not* covered — don't force a
+   match that isn't real. Recommend a cover letter in your summary to the
+   user unless the employer says not to (see the spec's *Market-specific
+   sections*). Tell the user the submission file name from the spec's
+   *Format & structure*, and if the advert asks for .docx, that
+   `render-resume-pdf` makes one alongside the PDF. Then commit the three files (on the application's
+   branch if you use branches; see `CLAUDE.md`'s *Working conventions*).
+
+10. **Get an independent critique.** This skill doesn't manage branches or
+   PRs itself (see `CLAUDE.md`'s Working conventions) — once this output
+   has an open PR (already open, or the user opens one now), invoke the
+   `resume-critic` subagent (Agent tool, `subagent_type: resume-critic`),
+   passing it: this skill's own `reference/resume-principles.md` path, the
+   JD file path, the written `resume.md` path, `rationale.md`'s path, and
+   the PR number/repo to comment on. It re-checks the self-check list and
+   every Skills entry's consistency/JD-relevance independently, and posts
+   findings as PR comments — report its summary back to the user rather
+   than silently swallowing the result. If there's no PR yet and the user
+   doesn't want one opened now, skip this step and say so plainly instead
+   of guessing where else to post the critique.
+
+## Hard rules
+
+- Never invent or embellish content — every bullet traces to the inventory,
+  verbatim or as an explicitly-approved reword.
+- Never use `candidate`/`jd_inferred`/unconfirmed inventory content as if it
+  were confirmed.
+- Never write a reworded bullet to disk without the user having seen and
+  approved that specific before/after.
+- Never let a reword imply a stronger claim than the bullet's
+  `evidence_strength` supports.
+- Never invent or assume right-to-work status, notice period or salary,
+  and never put notice period or salary on the CV.
+- Never store right-to-work status, notice period or salary in the
+  inventory: they're application details, asked for each time.
+- Converting the final `resume.md` to PDF/DOCX (for actual submission) is a
+  separate, later step — this skill's job ends at a clean Markdown draft.

@@ -1,6 +1,6 @@
 ---
 name: tailor-resume-usa
-description: Draft a tailored, ATS-sane US-market resume for a specific job description, built entirely from the confirmed inventory in inventory/ (never inventing content), plus a stub interview_prep.md pulling relevant STAR-format interview_stories. Rewords bullets to mirror the JD's language where it genuinely helps, but every reword is shown as an explicit before/after and requires the user's approval before it's written to disk. Use whenever the user wants a resume tailored to a US-market job, or asks to apply US resume best practices to their inventory content. For UK contract-market CVs, use `tailor-resume-uk-contract` instead.
+description: Draft a tailored, ATS-sane US-market resume for a specific job description, built entirely from the confirmed inventory in inventory/ (never inventing content), plus a stub interview_prep.md pulling relevant STAR-format interview_stories. Rewords bullets to mirror the JD's language where it genuinely helps, but every reword is shown as an explicit before/after and requires the user's approval before it's written to disk. Use whenever the user wants a resume tailored to a US-market job, or asks to apply US resume best practices to their inventory content. For UK contract-market CVs, use `tailor-resume-uk-contract` instead, and for permanent UK roles `tailor-cv-uk-permanent`.
 ---
 
 # Tailor resume (US market)
