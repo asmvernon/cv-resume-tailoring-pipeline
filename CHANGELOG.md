@@ -10,6 +10,10 @@ inventory needs updating to match.
 
 ## Unreleased
 
+- **A more natural opening for UK CV profiles.** `tailor-cv-uk-permanent`
+  now lets the personal profile open with who you are ("Data scientist and
+  engineering leader with …") instead of a verb. The rest of the profile
+  and every bullet still start with an active verb. Nothing to do.
 - **CVs for permanent UK jobs.** A new `tailor-cv-uk-permanent` skill
   drafts a CV for salaried UK roles: 2 A4 pages, a short personal profile,
   British spelling, and no photo, date of birth or references. Its rules

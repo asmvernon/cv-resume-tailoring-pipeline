@@ -73,6 +73,11 @@ safer default was picked.
   in the first person - start sentences with verbs"; Prospects CV: "Use
   active verbs". Prospects' own profile examples use "I", so the sources
   conflict; the recruiter's rule is used.)*
+- **Exception: the profile's opening line** may be a noun phrase that
+  names who the candidate is ("Data scientist and engineering leader with
+  …"), the conventional UK opener. Every later profile sentence starts
+  with an active verb. *(Prospects profile: "Introduce who you are";
+  pipeline preference, after a verb opener read awkwardly in use.)*
 - **British English spelling** throughout ("organisation", "optimise",
   "analysed"), and the document is always a **CV**, never a résumé.
   *(Prospects CV: "In other countries, such as the USA and Canada, CVs
@@ -248,8 +253,9 @@ them one by one.
 
 **Language**
 - [ ] British English spelling throughout; called a CV, never a résumé.
-- [ ] Every bullet and profile sentence starts with an active verb; no
-      first-person pronouns; no "Responsible for"/"Was involved in".
+- [ ] Every bullet, and every profile sentence after an optional
+      noun-phrase opener, starts with an active verb; no first-person
+      pronouns; no "Responsible for"/"Was involved in".
 - [ ] Tense is consistent within each role block.
 
 **Profile and contact**
