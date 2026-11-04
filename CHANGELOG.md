@@ -10,6 +10,11 @@ inventory needs updating to match.
 
 ## Unreleased
 
+- **CVs for permanent UK jobs.** A new `tailor-cv-uk-permanent` skill
+  drafts a CV for salaried UK roles: 2 A4 pages, a short personal profile,
+  British spelling, and no photo, date of birth or references. Its rules
+  cite the National Careers Service, Prospects and Michael Page. Ask for "a
+  CV for this UK job" and it's picked for you. Nothing to do.
 - **Updates for your copy.** Ask your assistant to "check for pipeline
   updates" and it brings in improvements from the public repo, explained in
   plain language, without touching your inventory, job descriptions or

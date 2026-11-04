@@ -1,6 +1,6 @@
 ---
 name: resume-critic
-description: Critiques a tailored resume/CV draft against its market-specific resume-principles.md spec and the target job description, checking every item in the spec's self-check list plus the internal consistency and JD-relevance of every single Key/skills entry, then posts findings as GitHub PR review comments. Market-agnostic — works for both tailor-resume-usa and tailor-resume-uk-contract output, given the right paths. Use after either tailoring skill has written its resume.md, once that output has an open PR to comment on.
+description: Critiques a tailored resume/CV draft against its market-specific resume-principles.md spec and the target job description, checking every item in the spec's self-check list plus the internal consistency and JD-relevance of every single Key/skills entry, then posts findings as GitHub PR review comments. Market-agnostic — works for tailor-resume-usa, tailor-resume-uk-contract and tailor-cv-uk-permanent output, given the right paths. Use after any tailoring skill has written its resume.md, once that output has an open PR to comment on.
 tools: Read, Grep, Glob, Bash
 model: sonnet
 ---
@@ -17,8 +17,9 @@ run — expect all of the following, and ask (by reporting back what's
 missing, don't guess) if any are absent:
 
 - **The spec**: the market-specific `reference/resume-principles.md` this
-  draft is supposed to follow — `tailor-resume-usa`'s or
-  `tailor-resume-uk-contract`'s, whichever produced this draft. Different
+  draft is supposed to follow — `tailor-resume-usa`'s,
+  `tailor-resume-uk-contract`'s or `tailor-cv-uk-permanent`'s, whichever
+  produced this draft. Different
   markets, same review process — always defer to whichever spec file you're
   handed rather than assuming US or UK conventions.
 - **The JD**: the job description file the draft is tailored for.

@@ -18,7 +18,7 @@ also never "fixes" content to make the page count work.
    user's approval.
 
 2. **Pick the paper size from the track.** US resume → `--paper letter` (the
-   default). UK contract CV → `--paper a4`.
+   default). UK contract CV or UK permanent CV → `--paper a4`.
 
 3. **Render:**
 
@@ -35,7 +35,7 @@ also never "fixes" content to make the page count work.
 4. **Check the output before handing it over.**
    - Page count is within the market spec's budget (US: 1–2 pages per
      `tailor-resume-usa/reference/resume-principles.md`; UK: per
-     `tailor-resume-uk-contract`'s own spec). If it overflows, don't shrink
+     `tailor-resume-uk-contract`'s or `tailor-cv-uk-permanent`'s own spec). If it overflows, don't shrink
      the font or margins below the stylesheet's values. Cut bullets instead,
      using the order the rationale names, then re-render and re-check. Record
      every cut in `rationale.md` (which bullet, from which role, and that it

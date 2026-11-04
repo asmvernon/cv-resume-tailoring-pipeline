@@ -33,6 +33,9 @@ content:
 - **US resume** → `tailor-resume-usa`
 - **UK contract CV** → `tailor-resume-uk-contract` (signals: day-rate
   language, "Inside/Outside IR35", an agency/contract-length framing)
+- **UK permanent CV** → `tailor-cv-uk-permanent` (signals: a UK location
+  with a salary or "full-time"/"permanent" framing, a person specification,
+  no day rate or IR35)
 
 ### 3. Gate: has extract-jd-signal run on this JD yet?
 
