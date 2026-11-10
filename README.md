@@ -145,7 +145,8 @@ confirm when it can't tell (for example, when you're offline).
    - drafts the résumé and shows you every inclusion, omission and reword
      before writing anything;
    - writes `resumes/<date>-<company>-<title>/resume.md`, `rationale.md` and
-     `interview_prep.md`.
+     `interview_prep.md`;
+   - offers to write a cover letter for the same job (see *Day to day*).
 
 5. **Get the PDF:**
 
@@ -172,6 +173,7 @@ confirm when it can't tell (for example, when you're offline).
 | "Add an interview story about the outage I handled" | `seed-inventory-from-source`: record it as a STAR story (situation, task, action, result), asking you for the details |
 | "Tailor my résumé for this job" | `apply-to-job`: the whole path, job description to draft |
 | "Make the PDF" | `render-resume-pdf` |
+| "Write a cover letter for this job" | `write-cover-letter`: a one-page letter in your own voice, built from your inventory, checked by a separate reviewer, approved by you, then rendered to PDF with an optional signature image |
 | "Create a tailoring skill for German CVs" | `create-tailor-skill`: add a new country or kind of role |
 | "Check for pipeline updates" | `update-pipeline`: bring in improvements from this repo (see *Getting updates*) |
 
@@ -211,7 +213,7 @@ inventory/schema.md    the inventory data model
 inventory/             your experience and skills (yours, private)
 job_descriptions/      the jobs you've applied to (yours, private)
 resumes/               one folder per application (yours, private)
-scripts/               the inventory checker, the PDF renderer, the private-copy
+scripts/               the inventory checker, the PDF renderers, the private-copy
                        check, the skills linter and the updater
 docs/tasks.md          open items the assistant logs for your decision
 CLAUDE.md, AGENTS.md   the rules every assistant follows here
@@ -225,7 +227,6 @@ Nothing beyond your AI assistant's own plan or API usage. There's no hosting.
 ## What it doesn't do
 
 - It doesn't find jobs or apply to them. You bring the job descriptions.
-- It doesn't write cover letters.
 - It won't fill a gap by making something up. A real gap becomes a
   development goal in `inventory/dev_opportunities_tracker.yaml`.
 

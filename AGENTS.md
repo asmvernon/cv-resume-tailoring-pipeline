@@ -21,6 +21,7 @@ the ones that stop to ask the user:
 | Tailor a UK contract-market CV | `.claude/skills/tailor-resume-uk-contract/SKILL.md` |
 | Tailor a CV for a permanent UK role | `.claude/skills/tailor-cv-uk-permanent/SKILL.md` |
 | Render a finished résumé to PDF | `.claude/skills/render-resume-pdf/SKILL.md` |
+| Write a cover letter for a job | `.claude/skills/write-cover-letter/SKILL.md` |
 | Add a tailoring skill for another country or kind of role | `.claude/skills/create-tailor-skill/SKILL.md` |
 | Check for and apply updates from the public pipeline repo | `.claude/skills/update-pipeline/SKILL.md` |
 | Review a tailored draft | `.claude/agents/resume-critic.md` |

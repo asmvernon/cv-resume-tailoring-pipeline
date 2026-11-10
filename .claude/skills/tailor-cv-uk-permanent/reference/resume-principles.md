@@ -193,7 +193,8 @@ error to a screener, so:
   roles; otherwise omit. *(Imperial careers, via search quote)*
 - **Cover letter**: recommend one in the summary to the user unless the
   employer says not to. *(Prospects CV: "Always include a cover letter
-  unless the employer states otherwise".)* This skill doesn't write it.
+  unless the employer states otherwise".)* This skill doesn't write it;
+  `write-cover-letter` does.
 
 ## What to omit
 

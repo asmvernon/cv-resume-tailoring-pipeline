@@ -91,7 +91,15 @@ unanswered question isn't), run `tailor-resume-usa`,
 `tailor-resume-uk-contract` or `tailor-cv-uk-permanent` per the track chosen in step 2, on its own
 branch/worktree (the "JD application work" category from `CLAUDE.md`).
 
-### 7. Summarize
+### 7. Offer a cover letter
+
+Unless the advert says not to send one, offer to write a cover letter with
+`write-cover-letter` once the draft exists. It goes in the same
+`resumes/<slug>/` folder and on the same branch, and it follows whatever
+the résumé finally says, so offer it after the user has approved the
+résumé's rewords.
+
+### 8. Summarize
 
 State what's done and what's still open — a flagged conflict, a declined
 gap, a pending user follow-up — so nothing silently drops between sessions.
