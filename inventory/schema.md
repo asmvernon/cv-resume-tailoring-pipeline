@@ -198,6 +198,25 @@ dev_opportunities:
 
 - `inventory/profile.yaml` — name, contact details, professional summary, languages.
   Needed verbatim by the tailoring skills' resume output; not skill/role data.
+  It may also hold an optional `cover_letter_style` block, which
+  `write-cover-letter` reads and writes (only with the user's agreement):
+
+  ```yaml
+  cover_letter_style:
+    source: "Letter the user wrote for Example Bio, 2024 (pasted 2026-11-10)"
+    structure: >
+      Opens with the role and one line on who they are now; one paragraph
+      on why the company; two evidence paragraphs; a short close.
+    phrases:              # the user's own wording, reusable as written
+      - "I build the tools that let scientists move faster."
+    story_lines:          # personal story lines, each with where it came from
+      - text: "I started coding to automate my own lab work."
+        source: "2024 letter to Example Bio"
+  ```
+
+  Everything in it is the user's own writing, so a cover letter may reuse
+  it as an approved source. Never put salary, notice period, work
+  authorization or a signature image here.
 - `inventory/education.yaml` — degrees/institutions/dates/honors, plus an optional
   `certifications:` list. Kept separate from `roles/` since it's credentials, not
   experience bullets. Each certification:

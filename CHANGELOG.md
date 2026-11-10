@@ -10,6 +10,16 @@ inventory needs updating to match.
 
 ## Unreleased
 
+- **Cover letters.** A new `write-cover-letter` skill drafts a one-page
+  cover letter for a job in your own voice, using only your confirmed
+  inventory and writing you've approved. A separate reviewer copy-edits
+  and fact-checks it before you see it, and nothing is final until you
+  approve the whole letter. `scripts/render_cover_letter.py` renders it to
+  a letter-format PDF (Letter or A4), with an optional signature image
+  that is never saved in the repo. Its rules cite Prospects.
+  `inventory/schema.md` documents an optional `cover_letter_style` block
+  in `profile.yaml` for your own reusable phrasing. Ask for "a cover
+  letter for this job". Nothing to do.
 - **A more natural opening for UK CV profiles.** `tailor-cv-uk-permanent`
   now lets the personal profile open with who you are ("Data scientist and
   engineering leader with …") instead of a verb. The rest of the profile
