@@ -29,8 +29,10 @@ before drafting.
   they've already approved in `resumes/*/cover_letter.md`.
 - Application details the inventory doesn't hold, asked for each time and
   never stored in the inventory: the market (US or UK), a named recipient if
-  the advert gives one, and anything the advert asks the letter to cover
-  (salary expectations, notice period, start date, work authorization).
+  the advert gives one, where they saw the advert, when they can start and
+  any dates they're unavailable for interviews, and anything the advert asks
+  the letter to cover (salary expectations, notice period, work
+  authorization).
 
 ## Steps
 
@@ -114,7 +116,9 @@ before drafting.
   whole text.
 - Never add salary, notice period or work-authorization details unless the
   advert asks for them and the user has given them for this application.
-- Never store application details (salary, notice period, work
-  authorization) or the signature image in the inventory or the repo.
+  A start date and unavailable dates go in only if the user gave them for
+  this application.
+- Never store application details (salary, notice period, start date, work
+  authorization) or the signature image in the inventory.
 - Never copy wording from the JD into the letter as if it were the user's
   own experience. Echoing the JD's keywords next to real evidence is fine.

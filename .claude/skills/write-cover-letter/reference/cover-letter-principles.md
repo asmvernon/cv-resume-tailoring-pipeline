@@ -10,7 +10,9 @@ don't state outright; treat it as a default the user can override.
 - **Prospects**: Prospects (UK graduate careers service), *Cover letters*,
   https://www.prospects.ac.uk/careers-advice/cvs-and-cover-letters/cover-letters
   (read 2026-11-10): when to send one, length, structure, keywords,
-  addressing, sign-off, file format.
+  addressing, sign-off, file format. Its paragraph-by-paragraph plan and
+  general salutations were also given by the user as a tips sheet
+  (2026-11-10).
 
 ## When to write one
 
@@ -25,20 +27,38 @@ don't state outright; treat it as a default the user can override.
 - **One page**, three to five short paragraphs. *(Prospects: "Typically, three
   to five concise paragraphs, cover letters should not exceed one A4 page.")*
   US letters follow the same one-page budget on Letter paper **(unverified)**.
-- **Opening**: the role you're applying for, and in one or two sentences who
-  you are now and why this role. *(Prospects: "Begin by stating the position
-  you're applying for".)*
-- **Why this company**: what draws you to its mission or work, tied to
-  something true about you, ideally one personal story line the user wrote.
-  *(Prospects: "why you're interested in working for the company and what you
-  can offer the organisation")*
-- **Evidence**: one or two paragraphs that answer the role's lead
-  requirements with specific, sourced examples. *(Prospects: "Back up the
-  claims in your cover letter with real evidence or examples".)*
-- **Close**: restate your interest, and anything practical the role needs
-  (relocation, on-site work, travel) if the user has confirmed it. *(Prospects:
-  "Reiterate your interest in the role and indicate your desire for an
-  interview.")*
+- **First paragraph, the opening**: why you're writing. State the position,
+  where you saw it advertised, and when you can start. *(Prospects: "Begin by
+  stating the position you're applying for, where you saw it advertised and
+  when you are available to start.")* Ask the user where they saw it and
+  their start date each time; leave either out if they don't say, and never
+  guess. Then one sentence on who you are now, naming the current work most
+  relevant to this role. Don't lead with a title or period that isn't
+  relevant to it, such as an acting management stint when applying for an
+  individual-contributor role; the résumé already lists it. *(pipeline rule,
+  from user feedback)*
+- **Second paragraph, why you and why them**: why you're suitable, what
+  attracted you to this type of work, why this company, and what you can
+  offer it. *(Prospects: "Cover why you're suitable for the job, what
+  attracted you to this type of work, why you're interested in working for
+  the company and what you can offer the organisation.")* Tie it to
+  something true about the user, ideally one personal story line they wrote.
+- **Third paragraph, evidence** (it may run to two paragraphs): relevant
+  experience matched to the job description's specific requirements, with
+  sourced examples, then a short summary of any additional strengths and how
+  they'd benefit the company. *(Prospects: "Highlight relevant experience and
+  demonstrate how your skills match the specific requirements of the job
+  description. Summarise any additional strengths and explain how these
+  could benefit the company."; "Back up the claims in your cover letter with
+  real evidence or examples".)*
+- **Last paragraph, the close**: restate your interest, say you'd like an
+  interview, mention any dates you're unavailable, then thank the employer
+  and say you look forward to hearing from them. *(Prospects: "Reiterate
+  your interest in the role and indicate your desire for a personal
+  interview. Now is the time to mention any unavailable dates. Finish by
+  thanking the employer and say how you are looking forward to receiving a
+  response.")* Add anything practical the role needs (relocation, on-site
+  work, travel) if the user has confirmed it.
 - **Complement the résumé; don't repeat it.** Tell the story behind two or
   three of its strongest points instead of listing them again. *(Prospects:
   "cover letters should complement your CV but not duplicate it"; "Don't fill
@@ -53,7 +73,11 @@ don't state outright; treat it as a default the user can override.
 
 - Address a named person when the advert or the user gives one.
   *(Prospects: "Always try and address your cover letter directly to the
-  person who will be reading it.")* Never guess a name.
+  person who will be reading it.")* Never guess a name. Use a general
+  greeting only once the advert, the company's site and the user have no
+  named contact: "Dear Hiring Manager", "Dear Sir/Madam" or "Dear Human
+  Resources Director" *(Prospects)*, or "Dear <Company> Hiring Team"
+  **(unverified)**.
 - **UK**: with a named contact, "Dear Ms Smith" and "Yours sincerely"; with a
   general greeting ("Dear Hiring Manager"), "Yours faithfully". *(Prospects:
   "If you include a named contact, sign it off with 'Yours sincerely'. If you
@@ -128,7 +152,11 @@ The step 6 reviewer and the final self-check both work through this list.
       profile notes.
 
 **Fit**
-- [ ] The opening names the exact role title.
+- [ ] The opening names the exact role title, plus where the advert was
+      seen and the start date if the user gave them.
+- [ ] The opening leads with the user's most relevant current work, not
+      a title that's beside the point for this role.
+- [ ] The close asks for an interview and thanks the employer.
 - [ ] The evidence paragraphs answer the role's lead requirements.
 - [ ] Company facts come only from the JD or a page actually read.
 - [ ] Practical details (relocation, on-site, travel, salary, notice) appear
