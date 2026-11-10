@@ -41,8 +41,11 @@ don't state outright; treat it as a default the user can override.
   attracted you to this type of work, why this company, and what you can
   offer it. *(Prospects: "Cover why you're suitable for the job, what
   attracted you to this type of work, why you're interested in working for
-  the company and what you can offer the organisation.")* Tie it to
-  something true about the user, ideally one personal story line they wrote.
+  the company and what you can offer the organisation.")* Keep "why this
+  company" as its own paragraph, opening with what draws the user to the
+  company's mission or work, and tie it to something true about them,
+  ideally one personal story line they wrote. Don't fold it into the
+  opening or the evidence. *(pipeline rule, from user feedback)*
 - **Third paragraph, evidence** (it may run to two paragraphs): relevant
   experience matched to the job description's specific requirements, with
   sourced examples, then a short summary of any additional strengths and how
