@@ -176,6 +176,17 @@ class UpdatePipelineTest(unittest.TestCase):
         write(copy, ".pipeline-version", "upstream_commit: x\nchecked: 2000-01-01\n")
         self.assertTrue(self.script(copy, "due").stdout.startswith("due"))
 
+    def test_due_never_in_the_public_repo_itself(self):
+        # The public repo can't hold a .pipeline-version, so without this its
+        # own checkouts would be reminded every session from the first commit.
+        copy = self.make_copy()
+        write(copy, ".pipeline-version", "upstream_commit: x\nchecked: 2000-01-01\n")
+        run(copy, "git", "remote", "add", "origin",
+            "https://github.com/asmvernon/cv-resume-tailoring-pipeline.git")
+        self.assertTrue(self.script(copy, "due").stdout.startswith("not due"))
+        run(copy, "git", "remote", "set-url", "origin", "git@github.com:someone/my-copy.git")
+        self.assertTrue(self.script(copy, "due").stdout.startswith("due"))
+
 
 if __name__ == "__main__":
     unittest.main()

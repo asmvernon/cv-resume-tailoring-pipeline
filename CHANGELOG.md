@@ -10,6 +10,10 @@ inventory needs updating to match.
 
 ## Unreleased
 
+- **No false update reminders in the public repo.** A checkout of the
+  public pipeline repo itself no longer says an update check is due, since
+  there's nothing for it to update from. Your own copy is reminded as
+  before. Nothing to do.
 - **Cover letters.** A new `write-cover-letter` skill drafts a one-page
   cover letter for a job in your own voice, using only your confirmed
   inventory and writing you've approved. A separate reviewer copy-edits
