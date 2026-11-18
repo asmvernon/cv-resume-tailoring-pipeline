@@ -44,6 +44,7 @@ user to decide.
 import argparse
 import datetime
 import os
+import re
 import subprocess
 import sys
 import tempfile
@@ -258,7 +259,20 @@ def short(sha):
     return out("log", "-1", "--format=%h (%cs)", sha)
 
 
+def origin_is_upstream():
+    """True in a checkout of the public repo itself, which has nothing to update from."""
+    try:
+        url = out("remote", "get-url", "origin")
+    except Error:
+        return False
+    m = re.match(r"^(?:https?://(?:[^@/]+@)?|ssh://git@|git@)github\.com[:/]([^/]+/[^/]+?)(?:\.git)?/?$", url)
+    return bool(m) and m.group(1).lower() == UPSTREAM.lower()
+
+
 def cmd_due(args):
+    if origin_is_upstream():
+        print("not due: this is the public pipeline repo itself, so there's nothing to update from")
+        return 0
     checked = read_record().get("checked")
     if not checked:
         roots = out("rev-list", "--max-parents=0", "HEAD").split()
