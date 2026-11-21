@@ -251,7 +251,15 @@ dev_opportunities:
   name has changed since. A role bullet may also cite a publication when the
   work belongs to that role.
 
-Both carry a `seeded_from` field recording provenance (e.g. which CV/date), the
+- `inventory/fit_profile.yaml` (optional) — what the user wants from their
+  next job: scoring weights, rating labels, target levels, locations, work
+  authorisation, preferred and avoided domains, culture signals, a pay
+  floor, deal-breakers and how they like a fit report. Read by
+  `assess-job-fit`; not experience, so nothing in it ever goes on a résumé.
+  Format: `.claude/skills/assess-job-fit/reference/fit-profile.md`. Check it
+  with `python3 scripts/check_fit_profile.py`.
+
+`profile.yaml` and `education.yaml` carry a `seeded_from` field recording provenance (e.g. which CV/date), the
 same way role/skill entries trace back to a JD.
 
 ## `source` field

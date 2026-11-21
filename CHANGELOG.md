@@ -10,6 +10,18 @@ inventory needs updating to match.
 
 ## Unreleased
 
+- **Check a job's fit before applying.** A new `assess-job-fit` skill reads
+  one or more postings from the employer's own site, checks the job ID on
+  the live page, and gives you a ranked verdict (Strong, Good, Partial,
+  Weak) with where you match, the gaps and up to three questions that could
+  change it. It scores against your confirmed inventory and your own
+  preferences, which you can keep in a new, optional
+  `inventory/fit_profile.yaml` (weights, levels, locations, work
+  authorisation, domains, deal-breakers). The assessment is saved as
+  `resumes/<job>/fit_assessment.md`. It never changes your inventory.
+  **Optional:** start a fit profile; the skill offers to when you first
+  tell it what you're looking for. `inventory/schema.md` describes the new
+  file; your existing inventory needs no changes.
 - **No false update reminders in the public repo.** A checkout of the
   public pipeline repo itself no longer says an update check is due, since
   there's nothing for it to update from. Your own copy is reminded as

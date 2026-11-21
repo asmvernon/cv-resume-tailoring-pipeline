@@ -10,7 +10,8 @@ the work; this repo's files are the source of truth they read and write.
 - `job_descriptions/` — the job descriptions the user has saved, one Markdown
   file each, kept for provenance (which JD prompted which inventory entry).
 - `resumes/<slug>/` — one folder per application: `resume.md`,
-  `rationale.md`, `interview_prep.md`, and optionally `resume.pdf`.
+  `rationale.md`, `interview_prep.md`, and optionally `resume.pdf` and a
+  `fit_assessment.md` from before the user decided to apply.
 - `docs/tasks.md` — open items the skills log for the user's decision.
 
 ## Ground rules
@@ -49,6 +50,8 @@ the work; this repo's files are the source of truth they read and write.
 
 - Run `python3 scripts/validate_inventory.py` after any change to
   `inventory/`; the inventory skills run it before committing.
+- Run `python3 scripts/check_fit_profile.py` after any change to
+  `inventory/fit_profile.yaml`.
 - Run `python3 scripts/lint_skills.py` after any change to `.claude/skills/`
   or `.claude/agents/`; CI runs it on every pull request.
 - If you use git branches, keep one branch per concern: (a) changes to the

@@ -171,6 +171,7 @@ confirm when it can't tell (for example, when you're offline).
 | "Add this job to my inventory" | `extract-jd-signal`: match the job against your inventory and resolve gaps, without drafting a résumé |
 | "Add my new role" or "I also did X at Y" | `seed-inventory-from-source`: update the inventory from what you tell it |
 | "Add an interview story about the outage I handled" | `seed-inventory-from-source`: record it as a STAR story (situation, task, action, result), asking you for the details |
+| "Is this job a good fit?" or "Rank these three roles" | `assess-job-fit`: a ranked verdict with the job ID checked on the live posting, where you match, the gaps and any questions that could change it, scored against your preferences in `inventory/fit_profile.yaml` |
 | "Tailor my résumé for this job" | `apply-to-job`: the whole path, job description to draft |
 | "Make the PDF" | `render-resume-pdf` |
 | "Write a cover letter for this job" | `write-cover-letter`: a one-page letter in your own voice, built from your inventory, checked by a separate reviewer, approved by you, then rendered to PDF with an optional signature image |
@@ -213,8 +214,8 @@ inventory/schema.md    the inventory data model
 inventory/             your experience and skills (yours, private)
 job_descriptions/      the jobs you've applied to (yours, private)
 resumes/               one folder per application (yours, private)
-scripts/               the inventory checker, the PDF renderers, the private-copy
-                       check, the skills linter and the updater
+scripts/               the inventory and fit-profile checkers, the PDF renderers,
+                       the private-copy check, the skills linter and the updater
 docs/tasks.md          open items the assistant logs for your decision
 CLAUDE.md, AGENTS.md   the rules every assistant follows here
 CHANGELOG.md           what changed in each update, in plain language
