@@ -88,6 +88,8 @@ different from a CV:
      overwrite silently.
    - `process`: follow as written. A rule can make this skill stricter,
      never looser.
+   - `conditional`: import the content as usual; the rule decides later,
+     per job description, whether a résumé or cover letter uses it.
 
    With no rules file, the defaults still hold: sanitize internal
    references, no first person in bullets, `end_date: "present"` for a role

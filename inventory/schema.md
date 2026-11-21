@@ -264,7 +264,7 @@ dev_opportunities:
   ```yaml
   rules:
     - id: no-internal-team-codes
-      kind: term          # term | style | exclude | fact | precedence | process
+      kind: term          # term | style | exclude | conditional | fact | precedence | process
       rule: Never use the internal squad codes; describe the team by what it does.
       find: ["Squad 7"]
       replace: "payments platform team"   # this exact substitution is pre-approved

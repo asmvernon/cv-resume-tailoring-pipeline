@@ -126,12 +126,15 @@ rules:
   - id: dup
     kind: term
     rule: y
+  - id: no-condition
+    kind: conditional
+    rule: Only sometimes.
 """)
         result = self.run_check()
         self.assertEqual(result.returncode, 2)
         err = result.stderr
         for expected in ["lowercase-hyphenated", "`kind` must be", "`rule`",
-                         "doesn't compile", "duplicate id 'dup'"]:
+                         "doesn't compile", "duplicate id 'dup'", "needs `when`"]:
             self.assertIn(expected, err)
 
     def test_example_rules_file_is_valid(self):

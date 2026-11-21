@@ -29,7 +29,8 @@ US conventions.
   `inventory/skills.yaml`, `inventory/interview_stories.yaml`, and every
   file in `inventory/roles/`.
 - The user's standing rules, `inventory/editorial_rules.yaml`, if it
-  exists: names never to use, preferred wording, claims to keep out (see
+  exists: names never to use, preferred wording, claims to keep out,
+  content to use only when the job description calls for it (see
   `import-work-evidence/reference/editorial-rules.md`). Apply them to
   everything you draft. A rule's `replace` is pre-approved; any other
   change to inventory wording is still a before/after.

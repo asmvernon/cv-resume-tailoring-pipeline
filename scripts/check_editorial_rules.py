@@ -34,7 +34,7 @@ except ImportError:
     print("PyYAML is required: pip install pyyaml", file=sys.stderr)
     sys.exit(2)
 
-KINDS = {"term", "style", "exclude", "fact", "precedence", "process"}
+KINDS = {"term", "style", "exclude", "conditional", "fact", "precedence", "process"}
 WHERE = {"inventory", "stories", "resume", "cover_letter"}
 FIELDS = {"any", "title", "summary", "bullets"}
 DEFAULT_WHERE = ["inventory", "resume", "cover_letter"]
@@ -96,6 +96,9 @@ def load_rules(path):
         if roles is not None and (not isinstance(roles, list)
                                   or not all(isinstance(r, str) for r in roles)):
             errors.append(f"{where}: `roles` must be a list of role ids")
+        if rule.get("kind") == "conditional" and not (
+                isinstance(rule.get("when"), str) and rule["when"].strip()):
+            errors.append(f"{where}: a `conditional` rule needs `when` (the condition)")
         if "replace" in rule and not isinstance(rule["replace"], str):
             errors.append(f"{where}: `replace` must be a string")
         rules.append({**rule, "where": rule_where, "fields": fields, "patterns": patterns})

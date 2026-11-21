@@ -18,7 +18,7 @@ An invented example of a full file: `example-editorial-rules.yaml`.
 ```yaml
 rules:
   - id: no-internal-team-codes     # required: lowercase-hyphenated, unique
-    kind: term                     # required: term | style | exclude | fact | precedence | process
+    kind: term                     # required: term | style | exclude | conditional | fact | precedence | process
     rule: >                        # required: the rule in plain language
       Never use the internal squad codes. Describe the team by what it does.
     find: ["Squad 7"]              # optional: literal text, case-insensitive, whole words
@@ -32,6 +32,9 @@ rules:
     added: "2026-01-15"            # optional: when the user gave the rule
     from: "conversation, 2026-01-15"   # optional: where the user said it
 ```
+
+`conditional` rules also carry `when`: the condition, in plain language,
+under which the content they cover may be used.
 
 `precedence` rules also carry `source` (which kind of source the rule is
 about) and `outcome`: `inventory_wins` or `flag`.
@@ -49,6 +52,7 @@ because they're the user's own prep notes, where internal names can help.
 | `term` | A word or name that must never appear, usually with a replacement | Checked by script. A `replace` is the user's standing approval for that exact substitution; anything more is a normal before/after reword. With no `replace`, propose wording each time |
 | `style` | A rule about form (no first person in bullets, "present" for active roles) | Checked by script when it has a `find`/`find_regex`; otherwise read and applied |
 | `exclude` | A true claim the user wants kept out (a stalled proposal, an unmeasured projection) | Don't import or draft anything that makes the claim, and say what was left out. A `find` lets the script catch it |
+| `conditional` | Content that is in the inventory but goes on a résumé or cover letter only when `when` holds (e.g. a volunteer role only when the job description mentions community work) | Tailoring skills check `when` against the job description, include or leave out accordingly, and say which in the rationale. Imports are unaffected: the content still goes in the inventory |
 | `fact` | The one accepted version of a title, date or figure | Use it wherever the fact appears. A source that says otherwise is a conflict, handled by the `precedence` rules |
 | `precedence` | Which source wins when two disagree | `inventory_wins`: keep the inventory, note the source's version in the role's `notes` and tell the user. `flag` (the default for any source with no rule): record both versions and add a `docs/tasks.md` item, per `inventory/schema.md`'s *Conflicting evidence* |
 | `process` | How a step works (what counts as a reword, what needs approval) | Followed as written. A process rule can make a step stricter than the skill's default, never looser: it can't waive *Never fabricate* or *Never reword without approval* |
