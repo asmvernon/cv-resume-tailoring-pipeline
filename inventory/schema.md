@@ -251,6 +251,28 @@ dev_opportunities:
   name has changed since. A role bullet may also cite a publication when the
   work belongs to that role.
 
+- `inventory/editorial_rules.yaml` — optional. The user's standing rules
+  and corrections: names never to use, preferred wording, claims to keep
+  out, facts that must read the same everywhere, and which source wins when
+  two disagree. Every skill that writes the user's words reads it, and
+  `scripts/check_editorial_rules.py` checks the inventory and drafts
+  against it. Only the user makes rules; a skill offers to save one when
+  the user's correction sounds general, and writes it only once they agree.
+  Format and how each kind of rule is applied:
+  `.claude/skills/import-work-evidence/reference/editorial-rules.md`.
+
+  ```yaml
+  rules:
+    - id: no-internal-team-codes
+      kind: term          # term | style | exclude | fact | precedence | process
+      rule: Never use the internal squad codes; describe the team by what it does.
+      find: ["Squad 7"]
+      replace: "payments platform team"   # this exact substitution is pre-approved
+  ```
+
+  A rule never adds content and never waives approval for a reword beyond
+  the exact substitution its `replace` names.
+
 Both carry a `seeded_from` field recording provenance (e.g. which CV/date), the
 same way role/skill entries trace back to a JD.
 
@@ -346,6 +368,10 @@ Every role, bullet, and skill also carries `source_type: cv | jd_inferred`:
   — don't guess which is more accurate.
 - Resolve it only once the user explicitly says which is accurate — same
   standard as any other `confidence`/`evidence_strength` change.
+- A `precedence` rule in `inventory/editorial_rules.yaml` is the user's
+  standing ruling for a whole kind of source (e.g. "where my performance
+  review disagrees, the inventory is correct"). Follow it, and still tell
+  the user what the source said.
 
 ## Dates
 

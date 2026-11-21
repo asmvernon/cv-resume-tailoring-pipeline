@@ -63,6 +63,12 @@ missing, don't guess) if any are absent:
    ATS/keyword-alignment guidance — since a checklist is never the full
    spec.
 
+4. If `inventory/editorial_rules.yaml` exists, run
+   `python3 scripts/check_editorial_rules.py <path to resume.md>` and
+   report every hit, then read the rules it can't check (the ones with no
+   `find`) and flag any line that breaks one. These are the candidate's own
+   standing rules, so a hit is always a finding.
+
 ## What NOT to do
 
 - Don't edit the resume, the rationale, or any other file — read-only.

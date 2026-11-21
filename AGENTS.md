@@ -15,6 +15,7 @@ the ones that stop to ask the user:
 | When the user wants to… | Follow |
 |---|---|
 | Add their CV, résumé, LinkedIn PDF or background to the inventory | `.claude/skills/seed-inventory-from-source/SKILL.md` |
+| Import an evidence export from an AI session at work, or save a standing rule | `.claude/skills/import-work-evidence/SKILL.md` |
 | Add a job description and check it against the inventory | `.claude/skills/extract-jd-signal/SKILL.md` |
 | Go from a job description to a tailored résumé, end to end | `.claude/skills/apply-to-job/SKILL.md` |
 | Tailor a US-market résumé | `.claude/skills/tailor-resume-usa/SKILL.md` |

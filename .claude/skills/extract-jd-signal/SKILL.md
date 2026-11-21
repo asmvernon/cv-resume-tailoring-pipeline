@@ -127,7 +127,9 @@ Turns one job description into inventory updates — proposed, never silently ap
    edited, justifying its current `evidence_strength` (see
    `inventory/schema.md`'s Evidence strength rationale section). Do not
    commit while the validator reports anything on content this run added or
-   edited.
+   edited. If `inventory/editorial_rules.yaml` exists, also run
+   `python3 scripts/check_editorial_rules.py` and fix any hit on entries
+   this run wrote.
 
 ## Hard rules
 
