@@ -28,6 +28,12 @@ US conventions.
 - The full inventory: `inventory/profile.yaml`, `inventory/education.yaml`,
   `inventory/skills.yaml`, `inventory/interview_stories.yaml`, and every
   file in `inventory/roles/`.
+- The user's standing rules, `inventory/editorial_rules.yaml`, if it
+  exists: names never to use, preferred wording, claims to keep out,
+  content to use only when the job description calls for it (see
+  `import-work-evidence/reference/editorial-rules.md`). Apply them to
+  everything you draft. A rule's `replace` is pre-approved; any other
+  change to inventory wording is still a before/after.
 - Contract-logistics details the inventory doesn't hold (day-rate
   expectation, notice period/availability date, inside/outside IR35
   preference) — these are application-specific, not experience, so they're
@@ -117,7 +123,9 @@ US conventions.
 9. **Run the self-check list** from `reference/resume-principles.md` and
    report the results in `rationale.md`, including an honest list of
    required JD keywords that are genuinely *not* covered — don't force a
-   match that isn't real. Then commit the three files (on the application's
+   match that isn't real. Run
+   `python3 scripts/check_editorial_rules.py resumes/<slug>/resume.md` and
+   fix every hit. Then commit the three files (on the application's
    branch if you use branches; see `CLAUDE.md`'s *Working conventions*).
 
 10. **Get an independent critique.** This skill doesn't manage branches or

@@ -170,6 +170,8 @@ confirm when it can't tell (for example, when you're offline).
 |---|---|
 | "Add this job to my inventory" | `extract-jd-signal`: match the job against your inventory and resolve gaps, without drafting a résumé |
 | "Add my new role" or "I also did X at Y" | `seed-inventory-from-source`: update the inventory from what you tell it |
+| "Import this evidence export from my work session" | `import-work-evidence`: bring role summaries, draft bullets and evidence tables an AI assistant at work gathered for you into the inventory, applying your standing rules (see below) |
+| "From now on, never call it Squad 7" | `import-work-evidence`: save a standing rule in `inventory/editorial_rules.yaml`, which every skill applies from then on |
 | "Add an interview story about the outage I handled" | `seed-inventory-from-source`: record it as a STAR story (situation, task, action, result), asking you for the details |
 | "Tailor my résumé for this job" | `apply-to-job`: the whole path, job description to draft |
 | "Make the PDF" | `render-resume-pdf` |
@@ -179,6 +181,15 @@ confirm when it can't tell (for example, when you're offline).
 
 Open questions the assistant can't settle for you, such as two sources that
 disagree about a skill, go in `docs/tasks.md`.
+
+Corrections you'll want every time (an internal team name to avoid, a
+title to write one way, a claim to leave out) can be saved as standing
+rules in `inventory/editorial_rules.yaml`. The assistant offers to save one
+when you correct something in a way that sounds general, and every skill
+applies the file from then on. `scripts/check_editorial_rules.py` checks
+your inventory and drafts against it. See
+`.claude/skills/import-work-evidence/reference/editorial-rules.md` for the
+format.
 
 ## Getting updates
 
@@ -213,8 +224,9 @@ inventory/schema.md    the inventory data model
 inventory/             your experience and skills (yours, private)
 job_descriptions/      the jobs you've applied to (yours, private)
 resumes/               one folder per application (yours, private)
-scripts/               the inventory checker, the PDF renderers, the private-copy
-                       check, the skills linter and the updater
+scripts/               the inventory and editorial-rules checkers, the PDF
+                       renderers, the private-copy check, the skills linter
+                       and the updater
 docs/tasks.md          open items the assistant logs for your decision
 CLAUDE.md, AGENTS.md   the rules every assistant follows here
 CHANGELOG.md           what changed in each update, in plain language

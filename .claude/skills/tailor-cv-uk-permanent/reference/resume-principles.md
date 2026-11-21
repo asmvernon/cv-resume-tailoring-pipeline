@@ -51,7 +51,9 @@ safer default was picked.
   *(Prospects CV)*
 - **Submission file name**: `Firstname-Lastname-CV-Company-Role-Title.pdf`
   (for example `Jane-Smith-CV-Acme-Lead-Data-Scientist.pdf`), and the same
-  name with `.docx` for a Word copy. The repo keeps `resume.pdf`;
+  name with `.docx` for a Word copy, unless the user's
+  `inventory/editorial_rules.yaml` sets a `file_name` pattern, which wins.
+  The repo keeps `resume.pdf`;
   `render-resume-pdf` gives the user the named copy. *(Prospects CV for
   "Firstname-Lastname-CV"; the company and role suffix is a pipeline
   preference, **unverified**.)*

@@ -52,10 +52,12 @@ also never "fixes" content to make the page count work.
 
 5. **Commit and deliver.** Commit `resume.pdf` next to `resume.md` on the
    same branch (it's part of that JD's application work per `CLAUDE.md`),
-   and give the user the file directly. If the market spec sets a
+   and give the user the file directly. If `inventory/editorial_rules.yaml`
+   has a rule with a `file_name` pattern, or else the market spec sets a
    submission file name (`tailor-cv-uk-permanent` does), keep `resume.pdf`
    in the repo and give the user a copy under that name, made with `-o`
-   (outside `resumes/<slug>/`, or not committed). If the user needs a Word
+   (outside `resumes/<slug>/`, or not committed). The rule's pattern wins
+   over the spec's. If the user needs a Word
    file, convert the same `resume.md` with
    `pandoc resumes/<slug>/resume.md -o <name>.docx` and give them that too:
    it carries the same wording, without the PDF's styling.

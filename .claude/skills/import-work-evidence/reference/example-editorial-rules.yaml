@@ -1,0 +1,130 @@
+# Example inventory/editorial_rules.yaml, for an invented user.
+#
+# Copy it to inventory/editorial_rules.yaml in your own private copy and
+# replace these rules with yours, or let import-work-evidence start the file
+# for you the first time you correct something. Every name, team and figure
+# below is made up. Format: reference/editorial-rules.md.
+
+rules:
+  # --- Terms: names that mean nothing (or too much) outside the company ---
+  - id: no-internal-team-codes
+    kind: term
+    rule: >
+      Never use the internal squad codes or project codenames. Describe the
+      team by what it does.
+    find: ["Squad 7", "Squad 7B", "Project Falcon"]
+    replace: "payments platform team"
+    why: Codenames mean nothing to an outside reader and can identify internal systems.
+    added: "2026-01-15"
+
+  - id: no-internal-title-prefix
+    kind: term
+    rule: >
+      The guild role is "Data Steward", without the internal "Guild" prefix.
+    find: ["Guild Data Steward"]
+    replace: "Data Steward"
+    added: "2026-01-15"
+
+  - id: team-closed-not-paused
+    kind: term
+    rule: >
+      Say the analytics team was "closed", not "paused" or "wound down"; it
+      was not restarted.
+    find: ["paused", "wound down"]
+    replace: "closed"
+    roles: [example-analytics-lead]
+    fields: [summary, bullets]
+    added: "2026-02-03"
+
+  # --- Exclusions: true, but kept off every résumé and out of the inventory ---
+  - id: exclude-pricing-rewrite-proposal
+    kind: exclude
+    rule: >
+      Keep the pricing-engine rewrite proposal out. It was never approved,
+      and its projected savings were never measured.
+    find: ["pricing-engine proposal", "pricing engine rewrite"]
+    added: "2026-02-03"
+
+  - id: volunteer-role-only-when-relevant
+    kind: conditional
+    rule: >
+      The food-bank volunteer coordinator role goes on a résumé or cover
+      letter only when the job description asks for it.
+    when: >
+      The job description mentions community engagement, volunteering,
+      social impact or similar wording.
+    roles: [example-food-bank-volunteer-coordinator]
+    where: [resume, cover_letter]
+    added: "2026-02-10"
+
+  # --- Style ---
+  - id: no-first-person-in-bullets
+    kind: style
+    rule: >
+      Bullets never use the first person (I, me, my). Role summaries may.
+    find_regex: ["(?<![\\w'])(?:I|[Mm]e|[Mm]y|[Mm]ine|[Mm]yself)(?![\\w'])"]
+    fields: [bullets]
+    added: "2026-02-03"
+
+  - id: delivered-file-names
+    kind: style
+    rule: >
+      Name every file handed over for an application as name, company and
+      role, then the document type, so several files for one job sort
+      together.
+    file_name: "{name}-{company}-{role}-{type}"
+    where: [resume, cover_letter]
+    added: "2026-02-10"
+
+  - id: active-roles-say-present
+    kind: style
+    rule: >
+      A role the user still holds ends "present", never the current year
+      or a blank.
+    added: "2026-02-03"
+
+  # --- Facts that must read the same everywhere ---
+  - id: fact-former-title
+    kind: fact
+    rule: >
+      The official title at the previous employer was "Senior Data
+      Analyst", not "Data Engineer", even where a source calls it that.
+    roles: [example-senior-data-analyst]
+    added: "2025-12-01"
+
+  - id: fact-report-runtime-figure
+    kind: fact
+    rule: >
+      The reporting speed-up is "from 3 days to 4 hours" wherever it
+      appears, replacing older versions such as "2–3 days to same day".
+    added: "2025-12-10"
+
+  # --- Which source wins when two disagree ---
+  - id: precedence-performance-review
+    kind: precedence
+    rule: >
+      Where the annual performance-review document contradicts the
+      inventory, the inventory is correct; the user fixes the review
+      document.
+    source: "annual performance-review document"
+    outcome: inventory_wins
+    added: "2026-01-20"
+
+  - id: precedence-work-session-exports
+    kind: precedence
+    rule: >
+      Where a work-session export contradicts the inventory, flag both
+      versions and ask; never overwrite either one.
+    source: "work-session evidence exports"
+    outcome: flag
+    added: "2026-01-20"
+
+  # --- How imports are handled ---
+  - id: evidence-rows-are-rewords
+    kind: process
+    rule: >
+      Turning an evidence-table row (date, what was done, impact) into a
+      bullet is a reword: show it as a before/after and write it only once
+      approved. Draft bullets the export already wrote are imported as
+      they are, apart from changes these rules make.
+    added: "2026-01-20"

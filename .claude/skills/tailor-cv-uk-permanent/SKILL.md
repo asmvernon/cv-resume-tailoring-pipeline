@@ -26,6 +26,12 @@ and draft against it, don't reinvent it inline.
 - The full inventory: `inventory/profile.yaml`, `inventory/education.yaml`,
   `inventory/skills.yaml`, `inventory/interview_stories.yaml`, and every
   file in `inventory/roles/`.
+- The user's standing rules, `inventory/editorial_rules.yaml`, if it
+  exists: names never to use, preferred wording, claims to keep out,
+  content to use only when the job description calls for it (see
+  `import-work-evidence/reference/editorial-rules.md`). Apply them to
+  everything you draft. A rule's `replace` is pre-approved; any other
+  change to inventory wording is still a before/after.
 - Application details the inventory doesn't hold: whether the user needs a
   right-to-work line (only if they aren't a UK or Irish citizen, or the
   advert asks), and the file format the advert asks for (PDF or .docx).
@@ -102,7 +108,9 @@ and draft against it, don't reinvent it inline.
 9. **Run the self-check list** from `reference/resume-principles.md` and
    report the results in `rationale.md`, including an honest list of
    required JD keywords that are genuinely *not* covered — don't force a
-   match that isn't real. Recommend a cover letter in your summary to the
+   match that isn't real. Run
+   `python3 scripts/check_editorial_rules.py resumes/<slug>/resume.md` and
+   fix every hit. Recommend a cover letter in your summary to the
    user unless the employer says not to (see the spec's *Market-specific
    sections*). Tell the user the submission file name from the spec's
    *Format & structure*, and if the advert asks for .docx, that

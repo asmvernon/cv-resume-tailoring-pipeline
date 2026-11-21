@@ -27,6 +27,12 @@ before drafting.
 - The user's voice: the optional `cover_letter_style` block in
   `inventory/profile.yaml` (see `inventory/schema.md`), and any cover letters
   they've already approved in `resumes/*/cover_letter.md`.
+- The user's standing rules, `inventory/editorial_rules.yaml`, if it
+  exists: names never to use, preferred wording, claims to keep out,
+  content to use only when the job description calls for it (see
+  `import-work-evidence/reference/editorial-rules.md`). Apply them to
+  everything you draft. A rule's `replace` is pre-approved; any other
+  change to inventory wording is still a before/after.
 - Application details the inventory doesn't hold, asked for each time and
   never stored in the inventory: the market (US or UK), a named recipient if
   the advert gives one, where they saw the advert, when they can start and
@@ -79,7 +85,9 @@ before drafting.
    `reference/cover-letter-principles.md`. Ask it for a numbered list of
    findings, each marked MUST (a grammar error, or a claim the sources don't
    support) or SHOULD (style, clarity, repetition), with the current text and
-   a replacement. It reports only and doesn't edit. Apply every MUST. Apply
+   a replacement. Also run
+   `python3 scripts/check_editorial_rules.py resumes/<slug>/cover_letter.md`;
+   every hit is a MUST. The reviewer reports only and doesn't edit. Apply every MUST. Apply
    the SHOULDs that keep the user's voice. Don't drop the user's own
    approved phrasing just because the reviewer finds it informal; note it
    instead.
@@ -100,7 +108,10 @@ before drafting.
    take the path from them each time, never commit the image, and leave it
    out if they don't give one. The letter must fit on one page; if it doesn't,
    cut words, never the font size. Rasterize the page and look at it
-   (`pdftoppm -r 80 -png cover_letter.pdf pg`) before handing it over.
+   (`pdftoppm -r 80 -png cover_letter.pdf pg`) before handing it over. If
+   `inventory/editorial_rules.yaml` has a rule with a `file_name` pattern,
+   hand the user a copy under that name (made with `-o`, outside
+   `resumes/<slug>/` or not committed); the repo keeps `cover_letter.pdf`.
 
 9. **Record and commit.** Add a *Cover letter* section to
    `resumes/<slug>/rationale.md`: the claim-to-source list, the review

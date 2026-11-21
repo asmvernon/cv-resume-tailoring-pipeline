@@ -10,6 +10,19 @@ inventory needs updating to match.
 
 ## Unreleased
 
+- **Evidence from work, and rules that stick.** A new
+  `import-work-evidence` skill imports an evidence export you've had an AI
+  assistant at work put together (role summaries, draft CV bullets, dated
+  evidence tables, colleagues' feedback, open questions) into the right
+  parts of your inventory. Your corrections can now be saved as standing
+  rules in `inventory/editorial_rules.yaml`: names never to use, wording to
+  prefer, claims to leave out, which source wins in a disagreement. The
+  inventory, tailoring and cover-letter skills all apply them, and
+  `scripts/check_editorial_rules.py` checks your inventory and drafts
+  against them. `inventory/schema.md` documents the file. Ask to "import
+  this evidence from my work session". Nothing to do: the rules file is
+  optional, and the assistant offers to start it the first time you
+  correct something.
 - **No false update reminders in the public repo.** A checkout of the
   public pipeline repo itself no longer says an update check is due, since
   there's nothing for it to update from. Your own copy is reminded as

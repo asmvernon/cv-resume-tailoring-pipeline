@@ -13,6 +13,11 @@ comes directly from the user rather than being inferred from a JD.
 
 - A CV/resume (file, pasted text, or a link to fetch — e.g. a Google Drive file).
 - Or the user describing roles/skills conversationally.
+- The user's standing rules, `inventory/editorial_rules.yaml`, if it
+  exists (see `import-work-evidence/reference/editorial-rules.md`). Apply
+  them to every entry you write; a rule's `replace` is pre-approved, any
+  other change is still a before/after. For an export from an AI session
+  at work, use `import-work-evidence` instead.
 
 ## Steps
 
