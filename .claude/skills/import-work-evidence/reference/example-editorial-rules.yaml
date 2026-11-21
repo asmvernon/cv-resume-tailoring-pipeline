@@ -66,6 +66,16 @@ rules:
     fields: [bullets]
     added: "2026-02-03"
 
+  - id: delivered-file-names
+    kind: style
+    rule: >
+      Name every file handed over for an application as name, company and
+      role, then the document type, so several files for one job sort
+      together.
+    file_name: "{name}-{company}-{role}-{type}"
+    where: [resume, cover_letter]
+    added: "2026-02-10"
+
   - id: active-roles-say-present
     kind: style
     rule: >

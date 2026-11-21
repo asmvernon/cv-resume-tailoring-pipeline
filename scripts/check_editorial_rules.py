@@ -99,6 +99,9 @@ def load_rules(path):
         if rule.get("kind") == "conditional" and not (
                 isinstance(rule.get("when"), str) and rule["when"].strip()):
             errors.append(f"{where}: a `conditional` rule needs `when` (the condition)")
+        if "file_name" in rule and not (isinstance(rule["file_name"], str)
+                                        and "{type}" in rule["file_name"]):
+            errors.append(f"{where}: `file_name` must be a pattern containing {{type}}")
         if "replace" in rule and not isinstance(rule["replace"], str):
             errors.append(f"{where}: `replace` must be a string")
         rules.append({**rule, "where": rule_where, "fields": fields, "patterns": patterns})

@@ -108,7 +108,10 @@ before drafting.
    take the path from them each time, never commit the image, and leave it
    out if they don't give one. The letter must fit on one page; if it doesn't,
    cut words, never the font size. Rasterize the page and look at it
-   (`pdftoppm -r 80 -png cover_letter.pdf pg`) before handing it over.
+   (`pdftoppm -r 80 -png cover_letter.pdf pg`) before handing it over. If
+   `inventory/editorial_rules.yaml` has a rule with a `file_name` pattern,
+   hand the user a copy under that name (made with `-o`, outside
+   `resumes/<slug>/` or not committed); the repo keeps `cover_letter.pdf`.
 
 9. **Record and commit.** Add a *Cover letter* section to
    `resumes/<slug>/rationale.md`: the claim-to-source list, the review

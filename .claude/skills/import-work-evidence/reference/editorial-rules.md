@@ -33,6 +33,14 @@ rules:
     from: "conversation, 2026-01-15"   # optional: where the user said it
 ```
 
+A `style` rule may carry `file_name`, the pattern for the files the user
+is given to submit: `{name}` (their name, hyphenated), `{company}`,
+`{role}` (the job title, hyphenated) and `{type}` (`Resume`, `CV` or
+`Cover-Letter`), e.g. `"{name}-{company}-{role}-{type}"`. The repo still
+keeps `resume.pdf` and `cover_letter.pdf`; `render-resume-pdf` and
+`write-cover-letter` hand over copies under this name, and it replaces any
+market spec's submission file name.
+
 `conditional` rules also carry `when`: the condition, in plain language,
 under which the content they cover may be used.
 
