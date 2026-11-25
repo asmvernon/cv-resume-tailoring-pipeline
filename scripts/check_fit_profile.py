@@ -6,20 +6,21 @@ assess-job-fit skill scores postings against. Format:
 
 Errors (fail the run):
   - the file doesn't parse, or isn't a mapping
-  - an unknown top-level field (usually a typo, which would silently fall
-    back to a default)
+  - an unknown field at the top level or inside a section (usually a typo,
+    which would silently fall back to a default)
   - weights that aren't numbers between 0 and 1, or don't add up to 1
-  - ratings that aren't a list of {min, label}, aren't highest first, or
-    don't end at min 0 (so every total gets a label)
+  - ratings that aren't a list of {min (0-5), label}, aren't highest first,
+    or don't end at min 0 (so every total gets a label)
   - levels, domains, culture lists or deal_breakers that aren't lists of
     strings
   - a work_authorisation value other than has_right, needs_sponsorship or
     unknown
-  - a location adjustment without match, a numeric delta and why
+  - a location adjustment without match, a numeric delta and a why
+  - a negative compensation floor
 
-A missing file is fine (the skill uses its defaults): exits 0 with a note.
-Exits 0 if the profile is valid, 1 if not, 2 if it can't run (PyYAML
-missing). Never modifies anything.
+A missing or empty file is fine (the skill uses its defaults): exits 0
+with a note. Exits 0 if the profile is valid, 1 if not, 2 if it can't run
+(PyYAML missing, or the file can't be read). Never modifies anything.
 
 Usage: python3 scripts/check_fit_profile.py [path]
 """
@@ -38,6 +39,14 @@ TOP_LEVEL = {
     "deal_breakers", "report", "notes",
 }
 AUTH_VALUES = {"has_right", "needs_sponsorship", "unknown"}
+SECTION_KEYS = {
+    "levels": {"best", "step_lower", "stretch"},
+    "locations": {"preferred", "acceptable", "adjustments", "notes"},
+    "domains": {"preferred", "avoid"},
+    "culture": {"look_for", "warning_signs", "source", "notes"},
+    "compensation": {"currency", "floor"},
+    "report": {"job_id", "style"},
+}
 
 
 def _is_str_list(value):
@@ -54,8 +63,16 @@ def check(profile):
     if not isinstance(profile, dict):
         return ["the file must be a mapping of fields (see fit-profile.md)"]
 
-    for key in sorted(set(profile) - TOP_LEVEL):
+    for key in sorted(set(profile) - TOP_LEVEL, key=str):
         problems.append(f"unknown field '{key}'")
+    for section, allowed in SECTION_KEYS.items():
+        value = profile.get(section)
+        if isinstance(value, dict):
+            for key in sorted(set(value) - allowed, key=str):
+                problems.append(f"{section}: unknown field '{key}'")
+    for key in ("rubric", "notes"):
+        if key in profile and not isinstance(profile[key], str):
+            problems.append(f"{key}: must be text")
 
     weights = profile.get("weights")
     if weights is not None:
@@ -77,8 +94,9 @@ def check(profile):
             mins = []
             for i, r in enumerate(ratings):
                 if (not isinstance(r, dict) or not _is_number(r.get("min"))
+                        or not 0 <= r["min"] <= 5
                         or not isinstance(r.get("label"), str) or not r["label"]):
-                    problems.append(f"ratings[{i}]: needs a numeric min and a label")
+                    problems.append(f"ratings[{i}]: needs a min between 0 and 5 and a label")
                 else:
                     mins.append(r["min"])
             if len(mins) == len(ratings):
@@ -119,9 +137,14 @@ def check(profile):
         for k in ("preferred", "acceptable"):
             if k in locations and not _is_str_list(locations[k]):
                 problems.append(f"locations.{k}: must be a list of text")
-        for i, adj in enumerate(locations.get("adjustments") or []):
+        adjustments = locations.get("adjustments")
+        if adjustments is not None and not isinstance(adjustments, list):
+            problems.append("locations.adjustments: must be a list")
+            adjustments = []
+        for i, adj in enumerate(adjustments or []):
             if (not isinstance(adj, dict) or not isinstance(adj.get("match"), str)
-                    or not _is_number(adj.get("delta")) or not adj.get("why")):
+                    or not _is_number(adj.get("delta"))
+                    or not isinstance(adj.get("why"), str) or not adj["why"]):
                 problems.append(f"locations.adjustments[{i}]: needs match, a numeric delta and why")
     elif locations is not None:
         problems.append("locations: must be a mapping")
@@ -130,8 +153,12 @@ def check(profile):
     if comp is not None:
         if not isinstance(comp, dict):
             problems.append("compensation: must be a mapping")
-        elif "floor" in comp and not _is_number(comp["floor"]):
-            problems.append("compensation.floor: must be a number")
+        elif "floor" in comp and (not _is_number(comp["floor"]) or comp["floor"] < 0):
+            problems.append("compensation.floor: must be a number, 0 or more (0 means no floor)")
+
+    report = profile.get("report")
+    if report is not None and not isinstance(report, dict):
+        problems.append("report: must be a mapping")
 
     return problems
 
@@ -144,9 +171,15 @@ def main(argv):
     except FileNotFoundError:
         print(f"No fit profile at {path}; assess-job-fit will use its defaults.")
         return 0
+    except (OSError, UnicodeDecodeError) as e:
+        print(f"Can't read {path}: {e}", file=sys.stderr)
+        return 2
     except yaml.YAMLError as e:
         print(f"PARSE ERROR in {path}: {e}")
         return 1
+    if profile is None:
+        print(f"{path} is empty; assess-job-fit will use its defaults.")
+        return 0
     problems = check(profile)
     if problems:
         for p in problems:

@@ -42,7 +42,7 @@ culture:
 
 compensation:
   currency: GBP
-  floor: 0
+  floor: 0          # 0 means no floor
 
 deal_breakers:
   - More than three days a week in the office

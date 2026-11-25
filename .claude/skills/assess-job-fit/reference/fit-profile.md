@@ -30,33 +30,34 @@ ratings:                        # highest first; the first whose min the total r
   - {min: 0,    label: Weak}
 
 levels:                         # how the level shapes the experience score
-  best: [Engineering Manager, Staff Engineer]
-  step_lower: [Senior Engineer]  # score one step below the same role at the right level
-  stretch: [Director]            # experience score capped at 4
+  best: [Data Engineering Manager, Lead Data Engineer]
+  step_lower: [Senior Data Engineer]  # score one step below the same role at the right level
+  stretch: [Head of Data]        # experience score capped at 4
 
 locations:
-  preferred: [Remote (UK)]
-  acceptable: [London hybrid]
+  preferred: [Manchester hybrid]
+  acceptable: [Remote (UK)]
   adjustments:                   # added to the total, each with a reason
-    - {match: "Los Angeles", delta: -0.5, why: "Prefers the Bay Area"}
-  notes: Open to relocation for the right role.
+    - {match: "London", delta: -0.5, why: "Would only commute to London twice a month"}
+  notes: Not open to relocation.
 
 work_authorisation:             # per country: has_right | needs_sponsorship | unknown
   UK: has_right
-  US: needs_sponsorship
+  EU: unknown
 
 domains:
-  preferred: [health, life sciences]   # what lifts company focus to 4-5
-  avoid: [gambling]                    # a deal-breaker unless the user says otherwise
+  preferred: [climate, energy]   # what lifts company focus to 4-5
+  avoid: [gambling]              # a deal-breaker unless the user says otherwise
 
 culture:
   look_for: [data treated as a core asset, design reviews and maintainability]
-  warning_signs: ["move fast" with nothing about quality]
+  warning_signs: ['"Move fast" with nothing about quality']
   source: docs/what_matters_to_me.md   # optional: the user's own notes
+  notes: Prefers small teams.          # optional
 
 compensation:                   # optional; never shown to employers
-  currency: USD
-  floor: 180000
+  currency: GBP
+  floor: 70000                  # 0 or omitted: no floor
 
 deal_breakers:                  # reported at the top whatever the score
   - Five days a week in the office
@@ -64,6 +65,8 @@ deal_breakers:                  # reported at the top whatever the score
 report:                         # how the user likes the report
   job_id: Read the requisition number from the live page every time.
   style: Ranked table first, then matches, gaps and questions.
+
+notes: Anything else worth knowing when scoring.   # optional
 ```
 
 ## Default scoring (no profile, or no `rubric`)
