@@ -42,7 +42,7 @@ culture:
 
 compensation:
   currency: GBP
-  floor: 85000
+  floor: 0
 
 deal_breakers:
   - More than three days a week in the office
