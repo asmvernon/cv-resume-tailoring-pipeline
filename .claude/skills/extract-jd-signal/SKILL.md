@@ -16,7 +16,9 @@ Turns one job description into inventory updates — proposed, never silently ap
 
 1. **Save the raw JD** to `job_descriptions/YYYY-MM-DD-company-title-slug.md` with a
    small frontmatter block: `company`, `title`, `url` (if any), `date_saved`. This is
-   the provenance record every inventory entry traces back to.
+   the provenance record every inventory entry traces back to. If the JD is
+   already saved there (for example by `assess-job-fit`), use that file
+   instead of saving a second copy.
 
 2. **Extract signal** from the JD:
    - Required skills / qualifications

@@ -1,0 +1,52 @@
+# An invented example of inventory/fit_profile.yaml, for a fictional data
+# engineering lead in Manchester. Format: fit-profile.md.
+version: 1
+
+weights:
+  experience: 0.5
+  company: 0.3
+  culture: 0.2
+
+ratings:
+  - {min: 4.25, label: Strong}
+  - {min: 3.5, label: Good}
+  - {min: 2.75, label: Partial}
+  - {min: 0, label: Weak}
+
+levels:
+  best: [Data Engineering Manager, Lead Data Engineer, Staff Data Engineer]
+  step_lower: [Senior Data Engineer]
+  stretch: [Head of Data, Director]
+
+locations:
+  preferred: [Manchester hybrid, Remote (UK)]
+  acceptable: [Leeds hybrid]
+  adjustments:
+    - {match: "London", delta: -0.5, why: "Would only commute to London twice a month"}
+
+work_authorisation:
+  UK: has_right
+  EU: unknown
+
+domains:
+  preferred: [climate, energy, public health]
+  avoid: [gambling, tobacco]
+
+culture:
+  look_for:
+    - Data treated as a product, with owners
+    - Code review and documentation taken seriously
+  warning_signs:
+    - Unpaid on-call
+    - '"Wear many hats" with no team named'
+
+compensation:
+  currency: GBP
+  floor: 0          # 0 means no floor
+
+deal_breakers:
+  - More than three days a week in the office
+
+report:
+  job_id: Quote the reference number from the live page; recruiters ask for it.
+  style: Verdict and ranked table first; keep each gap to one line.

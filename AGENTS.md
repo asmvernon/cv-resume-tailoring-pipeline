@@ -16,6 +16,7 @@ the ones that stop to ask the user:
 |---|---|
 | Add their CV, résumé, LinkedIn PDF or background to the inventory | `.claude/skills/seed-inventory-from-source/SKILL.md` |
 | Add a job description and check it against the inventory | `.claude/skills/extract-jd-signal/SKILL.md` |
+| Check whether a job (or several) is a good fit before applying | `.claude/skills/assess-job-fit/SKILL.md` |
 | Go from a job description to a tailored résumé, end to end | `.claude/skills/apply-to-job/SKILL.md` |
 | Tailor a US-market résumé | `.claude/skills/tailor-resume-usa/SKILL.md` |
 | Tailor a UK contract-market CV | `.claude/skills/tailor-resume-uk-contract/SKILL.md` |
