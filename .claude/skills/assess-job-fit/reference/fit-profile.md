@@ -62,7 +62,7 @@ compensation:                   # optional; never shown to employers
 deal_breakers:                  # reported at the top whatever the score
   - Five days a week in the office
 
-report:                         # how the user likes the report
+report:                         # free-form: how the user likes the report, and limits to check
   job_id: Read the requisition number from the live page every time.
   style: Ranked table first, then matches, gaps and questions.
 

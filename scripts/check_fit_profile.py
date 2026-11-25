@@ -6,8 +6,9 @@ assess-job-fit skill scores postings against. Format:
 
 Errors (fail the run):
   - the file doesn't parse, or isn't a mapping
-  - an unknown field at the top level or inside a section (usually a typo,
-    which would silently fall back to a default)
+  - an unknown field at the top level or inside a section other than
+    `report`, which is free-form (usually a typo, which would silently fall
+    back to a default)
   - weights that aren't numbers between 0 and 1, or don't add up to 1
   - ratings that aren't a list of {min (0-5), label}, aren't highest first,
     or don't end at min 0 (so every total gets a label)
@@ -45,7 +46,6 @@ SECTION_KEYS = {
     "domains": {"preferred", "avoid"},
     "culture": {"look_for", "warning_signs", "source", "notes"},
     "compensation": {"currency", "floor"},
-    "report": {"job_id", "style"},
 }
 
 
